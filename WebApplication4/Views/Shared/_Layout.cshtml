@@ -7,8 +7,6 @@
     <title>@ViewData["Title"] - Aphrodita</title>
     <link rel="stylesheet" href="~/Content/style.css" />
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
 </head>
 <body>
 
@@ -19,7 +17,7 @@
                <a href="#" class="shiping">&#9951 Livrare și plată</a>
           </div>
           <div class="top-bar">
-               <div class="logo"><a href="@Url.Action("Home1","Home1")">APHRODITE</a></div>
+               <div class="logo"><a href="@Url.Action("Home","Home")">APHRODITE</a></div>
                <div class="search-container">
                     <input type="text" placeholder="Căutare produse ...">
                </div>
@@ -27,8 +25,8 @@
                    <a href="@Url.Action("Login","Login")">Inregistrare</a>
 
 
-                   <a href="#" class="wishlist">&#9825 0</a>
-                   <a href="@Url.Action("Cart", "Cart")" class="cart">&#128722  MDL</a>
+                   <a href="@Url.Action("Favorite", "Favorite")" class="wishlist">&#9825 0</a>
+                   <a href="@Url.Action("Cart", "Cart")" class="cart">@ViewBag.CartTotalPrice MDL &#128722 </a>
                </div>
           </div>
 
@@ -61,3 +59,21 @@
 
 </body>
 </html>
+
+<script>
+     $(document).ready(function () {
+        $(".add-to-cart-btn").click(function () {
+            var productId = $(this).closest("form").data("id");
+
+            $.ajax({
+                type: "POST",
+                url: "/Cart/AddToCart",
+                data: { id: productId },
+                success: function (response) {
+                    $("#cart-total").text(response.totalPrice);
+                    alert(response.message);
+                }
+            });
+        });
+});
+</script>

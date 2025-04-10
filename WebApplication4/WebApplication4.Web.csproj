@@ -136,9 +136,10 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FavoriteController.cs" />
-    <Compile Include="Controllers\Home1Controller.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SingleproductController.cs" />
     <Compile Include="Controllers\FilterController.cs" />
@@ -156,7 +157,7 @@
     <Content Include="Views\Filter\Filter.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />
-    <Content Include="Views\Home1\Home1.cshtml" />
+    <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Favorite\Favorite.cshtml" />
     <None Include="Web.Debug.config">
@@ -169,6 +170,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WebApplication4.BusinessLogic\WebApplication4.BusinessLogic.csproj">

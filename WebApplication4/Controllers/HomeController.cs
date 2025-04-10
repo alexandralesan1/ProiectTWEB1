@@ -7,14 +7,14 @@ using WebApplication4.BusinessLogic.Core;
 
 namespace WebApplication4.Controllers
 {
-    public class Home1Controller : Controller
+    public class HomeController : BaseController
     {
           private readonly ProductService _productService;
-          public Home1Controller()
+          public HomeController()
           {
                _productService = new ProductService();
           }
-          public ActionResult Home1()
+          public ActionResult Home()
           {
                var products = _productService.GetAllProducts();
                return View(products);

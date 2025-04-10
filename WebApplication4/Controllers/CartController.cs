@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class CartController : Controller
     {
-        private static List<CartItem> CartItems = new List<CartItem>();
+        public static List<CartItem> CartItems = new List<CartItem>();
         private readonly ProductService _productService;
 
         public CartController()
@@ -18,12 +18,14 @@ namespace WebApplication4.Controllers
             _productService = new ProductService();
         }
 
-        public ActionResult Cart()
-        {
-            return View(CartItems);
-        }
+          public ActionResult Cart()
+          {
+               decimal cartTotalPrice = CartItems.Sum(item => item.FinalPrice);
+               ViewBag.CartTotalPrice = cartTotalPrice;
+               return View(CartItems);
+          }
 
-        [HttpPost]
+          [HttpPost]
         public ActionResult AddToCart(int id)
         {
             var product = _productService.GetProductById(id);
