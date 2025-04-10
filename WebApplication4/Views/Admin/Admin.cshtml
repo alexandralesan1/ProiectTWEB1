@@ -1,0 +1,67 @@
+﻿﻿
+@{
+    ViewBag.Title = "Admin";
+}
+@using WebApplication4.Domain.Entities
+@model IEnumerable<DBProductTable>
+
+<h2>Administrare Produse</h2>
+
+<form action="@Url.Action("AddProduct", "Admin")" method="post" enctype="multipart/form-data">
+    <label>Nume Produs:</label>
+    <input type="text" name="Name" required />
+
+    <label>Preț:</label>
+    <input type="number" name="Price" required />
+
+    <label>Imagine:</label>
+    <input type="file" name="ImageFile" required />
+
+    <select name="Category" required>
+        @foreach (var category in ViewBag.Categories)
+        {
+            <option value="@category">@category</option>
+        }
+    </select>
+
+    <select name="Brand" required>
+        @foreach (var brand in ViewBag.Brand)
+        {
+            <option value="@brand">@brand</option>
+        }
+    </select>
+
+    <select name="Country" required>
+        @foreach (var country in ViewBag.Country)
+        {
+            <option value="@country">@country</option>
+        }
+    </select>
+
+    <select name="SpecialCategory" required>
+        @foreach (var specialCategory in ViewBag.SpecialCategory)
+        {
+            <option value="@specialCategory">@specialCategory</option>
+        }
+    </select>
+
+    <button type="submit">Adaugă Produs</button>
+</form>
+
+<table>
+    <tr>
+        <th>Produs</th>
+    </tr>
+    @foreach (var product in Model)
+    {
+        <tr>
+            <td>@product.Name - @product.Price MDL - @product.Brand - @product.Category - @product.Country - @product.SpecialCategory </td>
+            <td>
+                <form action="@Url.Action("DeleteProduct", "Admin")" method="post">
+                    <input type="hidden" name="id" value="@product.Id" />
+                    <button type="submit">Șterge</button>
+                </form>
+            </td>
+        </tr>
+    }
+</table>

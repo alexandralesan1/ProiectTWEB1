@@ -1,0 +1,340 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crema Hidratantă cu Acid Hialuronic</title>
+    <link rel="stylesheet" href="~/Content/style.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        .product-image {
+            width: 45%;
+            padding: 20px;
+            text-align: center;
+        }
+
+            .product-image img {
+                width: 100%;
+                height: auto;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                transition: border-color 0.3s ease;
+                cursor: pointer;
+            }
+
+                .product-image img:hover {
+                    border-color: #d42e6d;
+                }
+
+        .product-details {
+            width: 50%;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #333;
+            position: relative;
+        }
+
+        .favorite-icon {
+            position: absolute;
+            top: 0;
+            right: 30px;
+            font-size: 1.5rem;
+            color: #000000;
+            cursor: pointer;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: #e60000;
+            margin-bottom: 20px;
+        }
+
+        .availability {
+            font-size: 1rem;
+            margin-bottom: 10px;
+            color: green;
+        }
+
+        .product-info {
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+        }
+
+            .info-section p {
+                max-width: 200px;
+                word-wrap: break-word;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+        .color-options {
+            margin-bottom: 20px;
+        }
+
+        .color-circle {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .green {
+            background-color: green;
+        }
+
+        .line {
+            border-top: 1px solid #ccc;
+            margin: 20px 0;
+        }
+
+        .quantity-selector {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+        }
+
+            .quantity-selector input {
+                width: 50px;
+                padding: 5px;
+                font-size: 1rem;
+                text-align: center;
+                border: 1px solid #ddd;
+                margin-right: 10px;
+            }
+
+        .button {
+            padding: 10px 20px;
+            background-color: #d42e6d;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            text-align: center;
+            border-radius: 5px;
+        }
+
+        .product-description {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            max-width: 1200px;
+            margin: 20px auto;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+            .product-description h1, .product-description h2 {
+                margin-bottom: 10px;
+            }
+
+            .product-description ul {
+                margin-left: 20px;
+            }
+
+        .image-gallery {
+            display: flex;
+            justify-content: flex-start;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+            .image-gallery img {
+                width: 45%;
+                cursor: pointer;
+                border: 2px solid #ccc;
+                border-radius: 5px;
+                margin-right: 0px;
+                padding: 20px;
+            }
+
+                .image-gallery img:hover {
+                    border-color: #d42e6d;
+                }
+
+        .feedback-button-container {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .feedback-button {
+            width: 180px;
+            font-size: 0.9rem;
+            padding: 5px 10px;
+            background-color: #555;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: width 0.3s ease;
+            background-color: #d42e6d;
+            margin-top: -30px;
+        }
+    </style>
+</head>
+    
+
+ 
+
+
+<body>
+
+    <div class="container">
+        <div class="product-image">
+            <img id="mainImage" src="~/Content/images/cerave.png" alt="Crema Hidratantă cu Acid Hialuronic" onclick="changeImage('image1.jpg')">
+        </div>
+        <div class="image-gallery">
+            <img src="~/Content/images/cerave.png" alt="Image 1" onclick="changeImage('image1.jpg')" width="150" height="150" />
+            <img src="~/Content/images/cerave.png" alt="Image 2" onclick="changeImage('image2.jpg')" width="150" height="150" />
+        </div>
+
+        <div class="product-details">
+            <h1 class="product-title">
+                Crema Hidratantă cu Acid Hialuronic
+                <span class="favorite-icon">
+                    <i class="fa-regular fa-heart"></i>
+                </span>
+            </h1>
+            <div class="line"></div>
+            <p class="product-price">99,99 RON</p>
+
+            <p class="availability">Disponibilitate: În stoc</p>
+            <div class="feedback-button-container">
+                <button class="feedback-button" onclick="giveFeedback()">Lasă feedback</button>
+            </div>
+            <div class="line"></div>
+
+            <div class="product-info">
+                <div class="info-section">
+                    <p>Articol: Crema</p>
+                    <p><i class="fas fa-truck"></i> Opțiuni de livrare:</p>
+                    <p>Achitare cu card la primire</p>
+                </div>
+                <div class="info-section">
+                    <p>Marca:CeraVe</p>
+                    <p>Achitare card</p>
+                </div>
+                <div class="info-section">
+                    <p>Țara Mărcii: România</p>
+                    <p>Achitare card</p>
+                </div>
+                <div class="info-section">
+                    <p>Domeniu: produse farmaceutice</p>
+                </div>
+            </div>
+
+            <div class="line"></div>
+
+            <div class="color-options">
+                <p>Alegeți culoarea:</p>
+                <div>
+                    <span class="color-circle red" onclick="selectColor('roșu')"></span>
+                    <span class="color-circle blue" onclick="selectColor('albastru')"></span>
+                    <span class="color-circle green" onclick="selectColor('verde')"></span>
+                </div>
+            </div>
+
+            <div class="line"></div>
+            <div class="quantity-selector">
+                <input type="number" value="1" min="1" id="quantity" />
+                <button class="button" onclick="addToCart()">Adaugă în coș</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-description">
+        <h1>Descriere produs</h1>
+        <p>
+            <h2>CeraVe Facial Moisturizing Lotion – Crema de Față Hidratantă CeraVe</h2>
+            Crema de față hidratantă CeraVe este un produs inovator, creat pentru a oferi o hidratare intensă și durabilă pentru toate tipurile de piele, inclusiv pielea sensibilă. Este formulată cu o combinație unică de ingrediente esențiale, inclusiv acid hialuronic, ceramide și alte substanțe active care ajută la refacerea barierei naturale a pielii, oferind protecție pe termen lung și un aspect sănătos și radiant.
+
+            <h2>Beneficii Cheie:</h2>
+            <ul>
+                <li><strong>Hidratare intensă:</strong> Acidul hialuronic este un ingredient activ esențial în formula CeraVe, care ajută la atragerea și menținerea apei în piele. Astfel, crema contribuie la menținerea unui nivel optim de hidratare, oferind o senzație de confort pe parcursul întregii zile.</li>
+                <li><strong>Refacerea barierei de protecție a pielii:</strong> Ceramidele sunt lipide esențiale pentru menținerea barierei naturale a pielii. Crema CeraVe conține un amestec de ceramide care ajută la repararea și protejarea barierei de apă a pielii, reducând riscul de deshidratare și iritații.</li>
+                <li><strong>Non-comedogenic:</strong> Această loțiune este formulată pentru a nu înfunda porii, ceea ce o face ideală pentru persoanele cu pielea predispusă la acnee sau alte probleme dermatologice. Este suficient de delicată pentru a fi folosită zilnic, fără a provoca iritații sau înfundarea porilor.</li>
+                <li><strong>Potrivită pentru pielea sensibilă:</strong> CeraVe Facial Moisturizing Lotion este testată dermatologic și este ideală pentru pielea sensibilă, având o formulă hipoalergenică care minimizează riscurile de reacții alergice. Este și fără parfum, pentru a preveni orice disconfort suplimentar.</li>
+                <li><strong>Protecție pe termen lung:</strong> Pe lângă hidratarea imediată, crema CeraVe ajută la restabilirea echilibrului natural al pielii, protejând-o de factorii externi dăunători, precum poluarea, vântul sau expunerea prelungită la soare.</li>
+            </ul>
+        </p>
+
+        <h2>Metode de livrare:</h2>
+        <p><i>Există 4 metode de livrare disponibile pentru a face cumpărăturile mai comode și mai ușoare:</i></p>
+        <ul>
+            <li><i><strong>Achitare numerar la livrare:</strong> Plătești comanda în numerar atunci când primești produsele, direct de la curier.</i></li>
+            <li><i><strong>Achitare card la livrare:</strong> Plătești comanda cu cardul bancar atunci când produsele ajung la tine, având posibilitatea de a alege plata cu cardul la livrare.</i></li>
+            <li><i><strong>Achitare direct pe site:</strong> Poți achita comanda direct pe site, prin plata cu cardul bancar, în momentul finalizării comenzii. Această metodă oferă rapiditate și siguranță în procesul de cumpărare.</i></li>
+        </ul>
+        <p><i><strong><span style="color: red;">Important:</span> Te rugăm să fii pregătit pentru livrare și să ai suma necesară pregătită pentru opțiunile de plată numerar!</strong></i></p>
+
+
+
+
+        
+    </div>
+
+    <script>
+        function addToCart() {
+            let quantity = document.getElementById("quantity").value;
+            alert("Ai adăugat " + quantity + " produs(e) în coș.");
+        }
+
+        function selectColor(color) {
+            alert("Ai selectat culoarea " + color);
+        }
+
+        function changeImage(newImageSrc) {
+            let currentImage = document.getElementById("mainImage");
+            currentImage.src = newImageSrc;
+            currentImage.style.borderColor = "#d42e6d";
+            setTimeout(function () {
+                currentImage.style.borderColor = "#ccc";
+            }, 200);
+        }
+
+        function giveFeedback() {
+            alert("Mulțumim pentru feedback-ul tău!");
+        }
+    </script>
+
+</body>
+</html>

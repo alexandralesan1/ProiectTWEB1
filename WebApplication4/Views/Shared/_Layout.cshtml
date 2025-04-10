@@ -1,0 +1,63 @@
+﻿
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - Aphrodita</title>
+    <link rel="stylesheet" href="~/Content/style.css" />
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+</head>
+<body>
+
+     <!-- Header Section -->
+     <header>
+          <div class="contact-bar">
+               <a href="#" class="contact">&#9743 Contactează-ne</a>
+               <a href="#" class="shiping">&#9951 Livrare și plată</a>
+          </div>
+          <div class="top-bar">
+               <div class="logo"><a href="@Url.Action("Home1","Home1")">APHRODITE</a></div>
+               <div class="search-container">
+                    <input type="text" placeholder="Căutare produse ...">
+               </div>
+               <div class="user-options">
+                   <a href="@Url.Action("Login","Login")">Inregistrare</a>
+
+
+                   <a href="#" class="wishlist">&#9825 0</a>
+                   <a href="@Url.Action("Cart", "Cart")" class="cart">&#128722  MDL</a>
+               </div>
+          </div>
+
+          <!-- Navigation Menu -->
+          <nav class="main-menu">
+              <ul>
+                  <li><a href="@Url.Action("Filter", "Filter")">Machiaj</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Piele</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Parfumerie</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Bărbați</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Păr</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Branduri</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Noutați</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Seturi cadou</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Promoții</a></li>
+              </ul>
+          </nav>
+     </header>
+
+     <!-- Main Content Area -->
+     <main role="main">
+          @RenderBody()
+     </main>
+
+     <!-- Footer Section -->
+     <footer>
+          <p>&copy; 2025 - Aphrodita</p>
+          <img>
+     </footer>
+
+</body>
+</html>

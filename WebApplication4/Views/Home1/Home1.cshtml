@@ -1,0 +1,104 @@
+﻿@{
+    ViewBag.Title = "Home1";
+}
+@using WebApplication4.Domain.Entities
+@model IEnumerable<DBProductTable>
+
+
+<div class="slideshow">
+    <div class="slide">
+        <img src="~/Content/images/1.jpg" alt="Slide 1">
+    </div>
+</div>
+<!--Produse noi-->
+<div class="new-products">
+    <h2 class="title-h2">Produse Noi</h2>
+    <div class="newP-container">
+        @foreach (var product in Model)
+        {
+            <div class="newP-item">
+                <img src="@product.ImageUrl" alt="@product.Name">
+                <p>@product.Name</p>
+                <h3>@product.Price mdl</h3>
+                <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                    <input type="hidden" name="id" value="@product.Id" />
+                    <button type="submit">Adaugă în coș</button>
+                </form>
+
+                <form action="@Url.Action("AddToFavorites", "Favorites")" method="post">
+                    <input type="hidden" name="id" value="@product.Id" />
+                    <button type="submit">Adaugă la favorite</button>
+                </form>
+            </div>
+        }
+    </div>
+
+    <div>
+        <a href="@Url.Action("Admin", "Admin")" class="button">Administrează Produsele</a>
+    </div>
+
+    <div class="promo-button-container">
+        <a href="#" class="button1">Toate Produsele Noi</a>
+    </div>
+</div>
+
+<!--Promotii-->
+<div class="promotions">
+    <h2 class="title-h2">Promoți special</h2>
+    <div class="promo-container">
+
+
+
+        <div class="promo-item">
+            <img src="~/Content/images/2.jpg" alt="Product 1">
+            <p>Produs1 brand cantitate</p>
+            <h3>1100mdl</h3>
+        </div>
+        <div class="promo-item">
+            <img src="~/Content/images/2.jpg" alt="Product 2">
+            <p>Produs1 brand cantitate</p>
+            <h3>1100mdl</h3>
+        </div>
+
+
+
+        <div class="promo-item">
+            <img src="~/Content/images/2.jpg" alt="Product 3">
+            <p>Produs2 brand cantitate</p>
+            <h3>1100mdl</h3>
+        </div>
+        <div class="promo-item">
+            <img src="~/Content/images/2.jpg" alt="Product 4">
+            <p>Produs3 brand cantitate</p>
+            <h3>1100mdl</h3>
+        </div>
+        <div class="promo-item">
+            <img src="~/Content/images/2.jpg" alt="Product 4">
+            <p>Produs4 brand cantitate</p>
+            <h3>1100mdl</h3>
+        </div>
+    </div>
+    <div class="promo-button-container">
+        <a href="#" class="button1">Toate Promoțiile</a>
+    </div>
+</div>
+<!--Noutati-->
+<div class="news">
+    <h2 class="title-h2">Noutați</h2>
+    <div class="news-container">
+
+
+        <div class="news-item">
+            <img src="~/Content/images/2.jpg" alt="Product 2">
+            <p>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                when an unknown printer took a galley of type and scrambled it to make a type specimen book...
+            </p>
+        </div>
+    </div>
+
+    <div class="promo-button-container">
+        <a href="#" class="button1">Toate Noutațile</a>
+    </div>
+</div>

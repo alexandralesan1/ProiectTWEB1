@@ -1,0 +1,248 @@
+﻿<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crema Hidratantă cu Acid Hialuronic</title>
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .filter1 {
+            border: 2px solid white;
+            width: 220px;
+            height: auto;
+            border-radius: 10px;
+            margin: 20px 30px 20px 20px;
+            padding: 20px 30px 20px 20px;
+        }
+
+        .horizontal {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+        }
+
+        .filter-group {
+            margin-bottom: 20px;
+        }
+/*
+            .filter-group label {
+                font-weight: bold;
+            }*/
+
+            .filter-group input {
+                margin-right: 10px;
+            }
+
+        .produsele {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            text-align: center;
+        }
+
+        .produse {
+            margin: 5px;
+        }
+
+            .produse:hover {
+                transform: scale(1.1);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .produse img {
+                display: grid;
+                width: 180px;
+                height: 250px;
+                margin: 20px;
+                border: 1px solid #f2f2f2;
+            }
+
+            .produse:hover img {
+                transform: scale(1.1);
+            }
+
+        .pagina-completa {
+            display: flex;
+        }
+
+        .publicitate img {
+            height: 600px;
+            width: 200px;
+            border: 1px solid #f2f2f2;
+            margin: 50px;
+            transform: translate(-20%, -1%);
+        }
+
+        .text {
+            margin-top: 50px;
+            margin-left: 50px;
+        }
+
+        .deasupra-paginii h1 {
+            margin-left: 150px;
+        }
+
+
+        .btn  {
+            border: 2px solid #d42e6d;
+            color: white;
+            background-color: #d42e6d;
+            border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="deasupra-paginii">
+        <h1>Pagina de produse</h1>
+    </div>
+
+    <div class="filter1">
+        <form method="get" action="@Url.Action("Index", "Filter")">
+            <!-- FILTER: BRANDURI -->
+            <div class="filter-group">
+                <label>BRANDURI:</label>
+                <form method="get" action="@Url.Action("Filter", "Product")">
+                    <div>
+                        <input type="checkbox" name="selectedBrands" value="AstraMakeup" id="brand1" />
+                        <label for="brand1">Astra Make up</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="selectedBrands" value="Maybelline" id="brand2" />
+                        <label for="brand2">Maybelline</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="selectedBrands" value="Seven7een" id="brand3" />
+                        <label for="brand3">Seven7een</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="selectedBrands" value="VivienneSabo" id="brand4" />
+                        <label for="brand4">Vivienne Sabo</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="selectedBrands" value="Collistar" id="brand5" />
+                        <label for="brand5">Collistar</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="selectedBrands" value="MaxFactor" id="brand6" />
+                        <label for="brand6">Max Factor</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" name="selectedBrands" value="Revolution" id="brand7" />
+                        <label for="brand7">Revolution</label>
+                    </div>
+                 
+                </form>
+            </div>
+
+
+            <!-- FILTER: CATEGORIA -->
+            <div class="filter-group">
+                <label>CATEGORIA:</label>
+                <div>
+                    <input type="checkbox" name="category" value="Machiaj" id="category1" />
+                    <label for="category1">Machiaj</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="Piele" id="category2" />
+                    <label for="category2">Piele</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="Parfumerie" id="category3" />
+                    <label for="category3">Parfumerie</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="Bărbați" id="category4" />
+                    <label for="category4">Bărbați</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="Păr" id="category5" />
+                    <label for="category5">Păr</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="category" value="SeturiCadou" id="category6" />
+                    <label for="category6">Seturi Cadou</label>
+                </div>
+            </div>
+
+
+            <!-- FILTER: TARA -->
+            <div class="filter-group">
+                <label>ȚARA:</label>
+                <div>
+                    <input type="checkbox" name="country" value="Elveția" id="country1" />
+                    <label for="country1">Elveția</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Canada" id="country2" />
+                    <label for="country2">Canada</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Italia" id="country3" />
+                    <label for="country3">Italia</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Rusia" id="country4" />
+                    <label for="country4">Rusia</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Grecia" id="country5" />
+                    <label for="country5">Grecia</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Germania" id="country6" />
+                    <label for="country6">Germania</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Coreea" id="country7" />
+                    <label for="country7">Coreea</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Anglia" id="country8" />
+                    <label for="country8">Anglia</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Spania" id="country9" />
+                    <label for="country9">Spania</label>
+                </div>
+                <div>
+                    <input type="checkbox" name="country" value="Franța" id="country10" />
+                    <label for="country10">Franța</label>
+                </div>
+            </div>
+
+
+
+            <button type="submit" class="btn">Aplică filtru</button>
+        </form>
+    </div>
+
+    @using WebApplication4.Domain.Entities
+    @model IEnumerable<DBProductTable>
+
+    <div class="produsele">
+        @foreach (var product in Model)
+        {
+            <div class="produse">
+                <img src="product.ImageUrl" alt="@product.Name" />
+                <h4>@product.Name</h4>
+                <p>@product.Price</p>
+            </div>
+        }
+    </div>
+
+    <div class="text">
+        Catalogul magazinului online de parfumerie si cosmetice prezinta o gama variata de produse cosmetice la cei mai importanti producatori europeni.
+    </div>
+
+</body>
+</html>
