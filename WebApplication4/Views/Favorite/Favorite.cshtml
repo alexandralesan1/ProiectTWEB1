@@ -110,7 +110,7 @@
             <td>@item.Product.Description</td>
             <td>@item.Product.Price mdl</td>
             <td>
-                <form action="@Url.Action("AddToFavorites", "Favorites")" method="post">
+                <form action="@Url.Action("AddToFavorites", "Favorite")" method="post">
                     <input type="hidden" name="id" value="@item.Product.Id" />
                     <button type="submit">Elimină</button>
                 </form>

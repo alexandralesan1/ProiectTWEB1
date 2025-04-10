@@ -54,7 +54,7 @@ namespace WebApplication4.Controllers
                     FavoriteItems.Add(new FavoriteItem { Product = product });
                 }
             }
-            return RedirectToAction("Favorites");
+            return RedirectToAction("Favorite");
         }
 
         [HttpPost]
