@@ -27,17 +27,17 @@ using WebApplication4.Domain.Entities;
 
 namespace WebApplication4.Controllers
 {
-    public class FavoritesController : Controller
+    public class FavoriteController : Controller
     {
         private static List<FavoriteItem> FavoriteItems = new List<FavoriteItem>();
         private readonly ProductService _productService;
 
-        public FavoritesController()
+        public FavoriteController()
         {
             _productService = new ProductService();
         }
 
-        public ActionResult Favorites()
+        public ActionResult Favorite()
         {
             return View(FavoriteItems);
         }
@@ -65,7 +65,7 @@ namespace WebApplication4.Controllers
             {
                 FavoriteItems.Remove(item);
             }
-            return RedirectToAction("Favorites");
+            return RedirectToAction("Favorite");
         }
     }
 

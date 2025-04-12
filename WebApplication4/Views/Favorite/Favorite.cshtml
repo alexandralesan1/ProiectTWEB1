@@ -87,7 +87,7 @@
     .favorite-item img {
         margin: 0 auto 15px;
     }
-    }
+
 </style>
 <h2>Favorite</h2>
 
@@ -107,7 +107,6 @@
                 <img src="@item.Product.ImageUrl" alt="@item.Product.Name" style="width: 50px; height: 50px; border-radius: 8px;">
                 @item.Product.Name
             </td>
-            <td>@item.Product.Description</td>
             <td>@item.Product.Price mdl</td>
             <td>
                 <form action="@Url.Action("AddToFavorites", "Favorite")" method="post">
