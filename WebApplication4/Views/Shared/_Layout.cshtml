@@ -6,10 +6,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"] - Aphrodita</title>
     <link rel="stylesheet" href="~/Content/style.css" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
 </head>
+<style>
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .logo img {
+        width: 100px;
+        height: auto;
+        position: center;
+        margin-left: 60px;
+        top: 30px;
+        left: 10px;
+    }
+
+    .search-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+    }
+
+    .search-container i {
+        position: absolute;
+        margin-left: 550px;
+        color: #888;
+    }
+
+    .search-container input {
+        padding-left: 30px; 
+        height: 35px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    
+</style>
 <body>
 
      <!-- Header Section -->
@@ -19,17 +54,25 @@
                <a href="#" class="shiping">&#9951 Livrare și plată</a>
           </div>
           <div class="top-bar">
-               <div class="logo"><a href="@Url.Action("Home","Home")">APHRODITE</a></div>
-               <div class="search-container">
-                    <input type="text" placeholder="Căutare produse ...">
-               </div>
-               <div class="user-options">
-                   <a href="@Url.Action("Login","Login")">Inregistrare</a>
+              <div class="logo">
+                  <a href="@Url.Action("Home", "Home")">
+                      <img src="~/Content/Images/afrodita.png" alt="APHRODITE" />
+                  </a>
+              </div>
+
+              <div class="search-container">
+                 
+                  <input type="text" placeholder="Căutare produse ...">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
+
+              <div class="user-options">
+                  <a href="@Url.Action("Login","Login")">Inregistrare/Logare</a>
 
 
-                   <a href="@Url.Action("Favorite", "Favorite")" class="wishlist">&#9825 0</a>
-                   <a href="@Url.Action("Cart", "Cart")" class="cart">@ViewBag.CartTotalPrice MDL &#128722 </a>
-               </div>
+                  <a href="@Url.Action("Favorite", "Favorite")" class="wishlist"><i class="fa-regular fa-heart"></i> 0</a>
+                  <a href="@Url.Action("Cart", "Cart")" class="cart">@ViewBag.CartTotalPrice MDL <i class="fa-solid fa-cart-shopping"></i> </a>
+              </div>
           </div>
 
           <!-- Navigation Menu -->

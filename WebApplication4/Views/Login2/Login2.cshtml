@@ -16,10 +16,8 @@
 
 <style>
 
-
     body {
         font-family: 'Montserrat', sans-serif;
-
     }
 
 
@@ -91,33 +89,34 @@
         border-radius: 5px;
     }
 
+
+
     .contact-section {
-    padding: 40px 20px;
-    background: linear-gradient(-45deg, #ffe0ec, #fbc2eb, #a18cd1, #fad0c4);
-    background-size: 400% 400%;
-    animation: gradientMove 10s ease infinite;
-}
+        padding: 40px 20px;
+        background: linear-gradient(-45deg, #ffe0ec, #fbc2eb, #a18cd1, #fad0c4);
+        background-size: 400% 400%;
+        animation: gradientMove 10s ease infinite;
+    }
 
     .gradientMove {
-    0% {background-position: 0% 50%;}
-    50% {background-position: 100% 50%;}
-    100% {background-position: 0% 50%;}
-}
+    0%{background-position: 0% 50%;}
 
+    50% {background-position: 100% 50%;}
+
+    100% {background-position: 0% 50%;}
+
+    }
 
 </style>
 <body>
     <section class="contact-section">
         <div class="contact-header">
-            <h2>Înregistrare utilizator</h2>
+            <h2>Autentificare</h2>
             <p>Completează formularul pentru a crea un cont sau a actualiza informațiile.</p>
         </div>
         <div class="contact-form">
-            <form action="@Url.Action("Register", "Login")" method="post" enctype="multipart/form-data">
-                <div class="form-group">
-                    <label for="name">Nume</label>
-                    <input type="text" id="name" name="name" required />
-                </div>
+            <form action="@Url.Action("Login2", "Login2")" method="post" enctype="multipart/form-data">
+
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" required />
@@ -126,22 +125,31 @@
                     <label for="password">Parola</label>
                     <input type="password" id="password" name="password" required />
                 </div>
-                <div class="form-group">
-                    <label for="phone">Telefon</label>
-                    <input type="text" id="phone" name="phone" required />
-                </div>
+
                 <button type="submit" class="btn-submit">Trimite</button>
-                <div style="color: red;">
-                    @ViewBag.Error
-                </div>
-                <a href="@Url.Action("Login2", "Login2")" class="wishlist" style="font-size: 12px; text-align: center; display: block; text-decoration: underline;">
-                    Ai deja un cont? Apasă aici pentru autentificare
+                @if (ViewBag.Error != null)
+                {
+                    <div style="background-color: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; padding: 15px; border-radius: 5px; margin-top: 10px;">
+                        <strong>eroare!</strong> @ViewBag.Error
+                    </div>
+                }
+
+               
+                @if (ViewBag.SuccessMessage != null)
+                {
+                    <div style="background-color: #d4edda; color: #155724; border: 1px solid #c3e6cb; padding: 15px; border-radius: 5px; margin-top: 10px;">
+                        <strong>Succes!</strong> @ViewBag.SuccessMessage
+                    </div>
+                }
+
+                <a href="@Url.Action("Login", "Login")" class="wishlist" style="font-size: 12px; text-align: center; display: block; text-decoration: underline;">
+                    Nu ai deja cont? Apasă aici pentru a te înregistra
                 </a>
 
 
             </form>
         </div>
     </section>
-   
+
 </body>
 </html>

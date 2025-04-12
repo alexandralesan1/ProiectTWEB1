@@ -55,6 +55,7 @@ namespace WebApplication4.BusinessLogic.Core
 
         public DBUserTable GetUserByEmail(string email)
         {
+
             return _dbContext.Users.FirstOrDefault(u => u.Email == email);
         }
 
@@ -85,6 +86,7 @@ namespace WebApplication4.BusinessLogic.Core
             }
 
             return null;
+            ;
         }
 
 
@@ -97,6 +99,11 @@ namespace WebApplication4.BusinessLogic.Core
                 _dbContext.SaveChanges();
             }
         }
+
+        
+
+
+
 
     }
 }

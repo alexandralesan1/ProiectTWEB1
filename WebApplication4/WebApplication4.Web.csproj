@@ -125,7 +125,17 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\images\Advertisement.png" />
+    <Content Include="Content\images\afrodita.png" />
+    <Content Include="Content\images\afroditaaa.png" />
     <Content Include="Content\images\aphrodite_family.png" />
+    <Content Include="Content\images\banner 3.png" />
+    <Content Include="Content\images\banner.png" />
+    <Content Include="Content\images\banner1.png" />
+    <Content Include="Content\images\banner2.png" />
+    <Content Include="Content\images\banner4.png" />
+    <Content Include="Content\images\banner5.png" />
+    <Content Include="Content\images\banner6.png" />
+    <Content Include="Content\images\banner7.png" />
     <Content Include="Content\images\cerave.png" />
     <Content Include="Content\images\collistar3.jpg" />
     <Content Include="Content\Site.css" />
@@ -140,6 +150,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\Login2Controller.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SingleproductController.cs" />
     <Compile Include="Controllers\FilterController.cs" />
@@ -160,6 +171,7 @@
     <Content Include="Views\Home\Home.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Favorite\Favorite.cshtml" />
+    <Content Include="Views\Login2\Login2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
