@@ -145,6 +145,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="AuthSession\AdminModAttribute.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -192,6 +193,10 @@
     <ProjectReference Include="..\WebApplication4.Domain\WebApplication4.Domain.csproj">
       <Project>{469eae72-6a84-42f7-99c2-46b2c40c64ff}</Project>
       <Name>WebApplication4.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApplication4.Helpers\WebApplication4.Helpers.csproj">
+      <Project>{42771ed2-b1ae-4a8a-8712-cb9330428959}</Project>
+      <Name>WebApplication4.Helpers</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

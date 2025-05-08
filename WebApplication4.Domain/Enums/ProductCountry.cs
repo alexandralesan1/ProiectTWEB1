@@ -8,15 +8,17 @@ namespace WebApplication4.Domain.Enums
 {
     public enum ProductCountry
     {
-        Elveția=1,
-        Canada=2,
-        Italia=3,
-        Rusia=4,
-        Grecia=5,
-        Germania=6,
-        Coreea=7,
-        Anglia=8,
-        Spania=9,
-        Franța=10
+       Spania=1,
+       Germania=2,
+       Italia=3,
+       Coreea=4,
+       Anglia=5,
+       Rusia=6,
+       Franța=7,
+       Grecia=8,
+       Turcia=9,
+       Polonia=10,
+       SUA=11,
+       Moldova=12
     }
 }

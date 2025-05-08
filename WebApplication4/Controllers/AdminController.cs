@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
+using WebApplication4.BusinessLogic.DBModel.AuthSession;
 using WebApplication4.Domain.Entities;
 using WebApplication4.Domain.Enums;
 
@@ -18,15 +19,16 @@ namespace WebApplication4.Controllers
             _productService = new ProductService();
         }
 
-        public ActionResult Admin()
-        {
-            var products = _productService.GetAllProducts();
-            ViewBag.Categories = Enum.GetValues(typeof(ProductCategory));
-            ViewBag.Brand = Enum.GetValues(typeof(ProductBrand));
-            ViewBag.Country = Enum.GetValues(typeof(ProductCountry));
-            ViewBag.SpecialCategory = Enum.GetValues(typeof(ProductSpecialCategory));
-            return View(products);
-        }
+        ////[AdminMod]
+        //public ActionResult Admin()
+        //{
+        //    var products = _productService.GetAllProducts();
+        //    ViewBag.Categories = Enum.GetValues(typeof(ProductCategory));
+        //    ViewBag.Brand = Enum.GetValues(typeof(ProductBrand));
+        //    ViewBag.Country = Enum.GetValues(typeof(ProductCountry));
+        //    ViewBag.SpecialCategory = Enum.GetValues(typeof(ProductSpecialCategory));
+        //    return View(products);
+        //}
 
         [HttpPost]
         public ActionResult AddProduct(DBProductTable product, HttpPostedFileBase ImageFile)

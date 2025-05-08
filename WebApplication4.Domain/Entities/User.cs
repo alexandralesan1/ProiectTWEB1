@@ -29,6 +29,12 @@ namespace WebApplication4.Domain.Entities
         public string Password { get; set; }
 
         public bool IsBlocked { get; set; }
+
+        [StringLength(50)]
+        public string Role { get; set; }
+
+        public string LasIp { get; set; } 
+        public DateTime LastLogin { get; set; }
     }
 
 

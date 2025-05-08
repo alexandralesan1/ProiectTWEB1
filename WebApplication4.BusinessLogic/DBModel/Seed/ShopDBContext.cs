@@ -16,6 +16,9 @@ namespace WebApplication4.BusinessLogic.DBModel.Seed
 
         public DbSet<DBFavProductTable> Favorites { get; set; }
 
+        public DbSet<DBRoleTable> Roles { get; set; }
+
+
         public ShopDBContext() : base("name=ShopDatabase") { }
         
 
