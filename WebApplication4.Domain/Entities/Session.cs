@@ -7,13 +7,18 @@ using System.Threading.Tasks;
 
 namespace WebApplication4.Domain.Entities
 {
-    public class DBFavoriteItemsTable
-    {
+     public class DBSessionTable
+     {
           [Key]
           public int Id { get; set; }
+
           [Required]
-          public int UserId { get; set; }
+          public string Username { get; set; }
+
           [Required]
-          public DBProductTable Product { get; set; }
-    }
+          public string CookieString { get; set; }
+
+          [Required]
+          public DateTime ExpireTime { get; set; } 
+     }
 }

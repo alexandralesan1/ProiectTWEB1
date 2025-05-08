@@ -1,47 +1,104 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
-using WebApplication4.BusinessLogic.DBModel.Seed;
 using WebApplication4.BusinessLogic.Interfaces;
-using WebApplication4.Controllers;
 using WebApplication4.Domain.Entities;
-
-
+using WebApplication4.Domain.Enums;
+using WebApplication4.Helpers;
 
 namespace WebApplication4.Web.Controllers
 {
-    public class LoginController : Controller
-    {
-        private readonly UserService _userService;
+     public class LoginController : Controller
+     {
+          private readonly UserService _userService;
+          private readonly SessionService _sessionService;
 
-        public LoginController()
-        {
-            _userService = new UserService();
-        }
+          public LoginController()
+          {
+               _userService = new UserService();
+               _sessionService = new SessionService();
+          }
 
-      
-        public ActionResult Login()
-        {
-            return View();
-        }
+          public ActionResult Login()
+          {
+               return View();
+          }
 
+          [HttpPost]
+          public ActionResult Login(DBUserTable user)
+          {
+               var authenticatedUser = _userService.Authenticate(user.Email, user.Password);
 
-        [HttpPost]
-        public ActionResult Register(DBUserTable user)
-        {
+               if (authenticatedUser != null)
+               {
 
-            _userService.AddUser(user);
+                    HttpCookie authCookie = new HttpCookie("X-KEY")
+                    {
+                         Value = CookieGenerator.Create(authenticatedUser.Email),
+                         Expires = DateTime.Now.AddMinutes(60),
+                         HttpOnly = true
+                    };
+                    Response.Cookies.Add(authCookie);
 
-            return RedirectToAction("Login");
+                    
+                    _sessionService.StoreSession(authenticatedUser.Email, authCookie.Value);
+                    HttpContext.Session["UserSession"] = authenticatedUser;
 
+                    return RedirectToAction("Home", "Home");
+               }
 
-        }
-    }
+               ViewBag.LoginError = "Invalid username or password.";
+               return View();
+          }
 
+          public ActionResult Register()
+          {
+               return View();
+          }
 
+          [HttpPost]
+          public ActionResult Register(DBUserTable user)
+          {
+               _userService.AddUser(user);
+
+               return RedirectToAction("Login");
+          }
+
+          public ActionResult Logout()
+          {
+               HttpContext.Session.Clear();
+               _sessionService.Logout("X-KEY");
+               return RedirectToAction("Login");
+          }
+
+          public ActionResult RegisterAdmin()
+          {
+               return View();
+          }
+          [HttpPost]
+          public ActionResult RegisterAdmin(string username, string email, string password, string adminKey)
+          {
+               const string adminAccessKey = "admin_registration_key"; 
+
+               if (adminKey != adminAccessKey)
+               {
+                    ViewBag.RegisterError = "Invalid admin registration key.";
+                    return View("RegisterAdmin");
+               }
+
+               var newAdmin = new DBUserTable
+               {
+                    Name = username,
+                    Email = email,
+                    Password = HashHelper.GenerateHash(password),
+                    Role = UserRole.Admin 
+               };
+
+               _userService.AddUser(newAdmin);
+               return RedirectToAction("Login");
+          }
+     }
 }
 
 

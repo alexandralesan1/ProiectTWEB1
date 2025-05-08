@@ -1,0 +1,28 @@
+﻿
+@{
+     ViewBag.Title = "RegisterAdmin";
+}
+
+<h2>RegisterLogin</h2>
+
+<h2>Admin Registration</h2>
+@if (ViewBag.RegisterError != null)
+{
+     <p style="color: red;">@ViewBag.RegisterError</p>
+}
+<form method="post" action="@Url.Action("RegisterAdmin", "Login")">
+     <label>Admin Key:</label>
+     <input type="password" name="AdminKey" required />
+
+     <label>Username:</label>
+     <input type="text" name="Username" required />
+
+     <label>Email:</label>
+     <input type="email" name="Email" required />
+
+     <label>Password:</label>
+     <input type="password" name="Password" required />
+
+     <button type="submit">Register as Admin</button>
+</form>
+
