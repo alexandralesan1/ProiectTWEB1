@@ -6,6 +6,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication4.Domain.Entities;
+using WebApplication4.BusinessLogic.Core;
 
 namespace WebApplication4.BusinessLogic.DBModel.Seed
 {
@@ -13,8 +14,9 @@ namespace WebApplication4.BusinessLogic.DBModel.Seed
     {
         public DbSet<DBProductTable> Products { get; set; }
         public DbSet<DBUserTable> Users { get; set; }
+        public DbSet<DBFavoriteItemsTable> Favorites { get; set; }
 
-        public DbSet<DBFavProductTable> Favorites { get; set; }
+        public DbSet<DBSessionTable> Session { get; set; }
 
         public DbSet<DBRoleTable> Roles { get; set; }
 

@@ -7,7 +7,7 @@ using WebApplication4.BusinessLogic.Core;
 
 namespace WebApplication4.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : Controller
     {
           private readonly ProductService _productService;
           public HomeController()

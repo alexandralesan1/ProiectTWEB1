@@ -48,14 +48,15 @@
     <Compile Include="Entities\CartItem.cs" />
     <Compile Include="Entities\DBRoleTable.cs" />
     <Compile Include="Entities\FavoriteItem.cs" />
-    <Compile Include="Entities\DBFavProductTable.cs" />
     <Compile Include="Entities\Product.cs" />
+    <Compile Include="Entities\Session.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\CategoryEnum.cs" />
     <Compile Include="Enums\ProductBrand.cs" />
     <Compile Include="Enums\ProductCategory.cs" />
     <Compile Include="Enums\ProductCountry.cs" />
     <Compile Include="Enums\ProductSpecialCountry.cs" />
+    <Compile Include="Enums\UserRole.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -10,7 +10,7 @@ namespace WebApplication4.Controllers
 {
     public class CartController : Controller
     {
-        public static List<CartItem> CartItems = new List<CartItem>();
+        public static List<DBCartItemsTable> CartItems = new List<DBCartItemsTable>();
         private readonly ProductService _productService;
 
         public CartController()
@@ -38,7 +38,7 @@ namespace WebApplication4.Controllers
                 }
                 else
                 {
-                    CartItems.Add(new CartItem { Product = product, Quantity = 1 });
+                    CartItems.Add(new DBCartItemsTable { Product = product, Quantity = 1 });
                 }
             }
             return RedirectToAction("Cart");

@@ -29,7 +29,7 @@ namespace WebApplication4.Controllers
 {
     public class FavoriteController : Controller
     {
-        private static List<FavoriteItem> FavoriteItems = new List<FavoriteItem>();
+        private static List<DBFavoriteItemsTable> FavoriteItems = new List<DBFavoriteItemsTable>();
         private readonly ProductService _productService;
 
         public FavoriteController()
@@ -51,7 +51,7 @@ namespace WebApplication4.Controllers
                 var existingItem = FavoriteItems.FirstOrDefault(f => f.Product.Id == id);
                 if (existingItem == null)
                 {
-                    FavoriteItems.Add(new FavoriteItem { Product = product });
+                    FavoriteItems.Add(new DBFavoriteItemsTable { Product = product });
                 }
             }
             return RedirectToAction("Favorite");

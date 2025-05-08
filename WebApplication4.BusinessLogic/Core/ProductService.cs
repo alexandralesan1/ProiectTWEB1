@@ -5,20 +5,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication4.BusinessLogic.DBModel.Seed;
+using WebApplication4.BusinessLogic.Interfaces;
 using WebApplication4.Domain.Entities;
 
 
 namespace WebApplication4.BusinessLogic.Core
 {
 
-    public class ProductService
+    public class ProductService: IProductService
     {
-        private readonly ShopDBContext _context;
+        private readonly ShopDBContext _context = new ShopDBContext();
 
-        public ProductService()
-        {
-            _context = new ShopDBContext();
-        }
 
         public List<DBProductTable> GetAllProducts()
         {

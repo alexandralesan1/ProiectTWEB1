@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WebApplication4.Domain.Enums;
 
 namespace WebApplication4.Domain.Entities
 {
@@ -26,16 +27,15 @@ namespace WebApplication4.Domain.Entities
         public string Phone { get; set; }
 
         [StringLength(100)]
+        [Required]
         public string Password { get; set; }
-
+          
         public bool IsBlocked { get; set; }
 
-        [StringLength(50)]
-        public string Role { get; set; }
+          [Required]
+          public UserRole Role { get; set; }
 
-        public string LasIp { get; set; } 
-        public DateTime LastLogin { get; set; }
-    }
+     }
 
 
 }
