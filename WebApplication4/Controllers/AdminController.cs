@@ -19,16 +19,16 @@ namespace WebApplication4.Controllers
             _productService = new ProductService();
         }
 
-        ////[AdminMod]
-        //public ActionResult Admin()
-        //{
-        //    var products = _productService.GetAllProducts();
-        //    ViewBag.Categories = Enum.GetValues(typeof(ProductCategory));
-        //    ViewBag.Brand = Enum.GetValues(typeof(ProductBrand));
-        //    ViewBag.Country = Enum.GetValues(typeof(ProductCountry));
-        //    ViewBag.SpecialCategory = Enum.GetValues(typeof(ProductSpecialCategory));
-        //    return View(products);
-        //}
+        //[AdminMod]
+        public ActionResult Admin()
+        {
+            var products = _productService.GetAllProducts();
+            ViewBag.Categories = Enum.GetValues(typeof(ProductCategory));
+            ViewBag.Brand = Enum.GetValues(typeof(ProductBrand));
+            ViewBag.Country = Enum.GetValues(typeof(ProductCountry));
+            ViewBag.SpecialCategory = Enum.GetValues(typeof(ProductSpecialCategory));
+            return View(products);
+        }
 
         [HttpPost]
         public ActionResult AddProduct(DBProductTable product, HttpPostedFileBase ImageFile)
