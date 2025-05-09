@@ -77,15 +77,17 @@
         <!-- Navigation Menu -->
         <nav class="main-menu">
             <ul>
-                <li><a href="@Url.Action("Filter", "Filter")">Machiaj</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Piele</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Parfumerie</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Bărbați</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Păr</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Branduri</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Noutați</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Seturi cadou</a></li>
-                <li><a href="@Url.Action("Filter", "Filter")">Promoții</a></li>
+                
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Machiaj" })">Machiaj</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Piele" })">Piele</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Parfumerie" })">Parfumerie</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Bărbați" })">Bărbați</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Păr" })">Păr</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Branduri" })">Branduri</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Noutați" })">Noutați</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Seturi cadou" })">Seturi cadou</a></li>
+                <li><a href="@Url.Action("Filter", "Filter", new { category = "Promoții" })">Promoții</a></li>
+
             </ul>
         </nav>
     </header>

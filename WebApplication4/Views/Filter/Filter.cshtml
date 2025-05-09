@@ -34,9 +34,9 @@
             margin-bottom: 20px;
         }
 
-            .filter-group input {
-                margin-right: 10px;
-            }
+        .filter-group input {
+            margin-right: 10px;
+        }
 
         .produsele {
             display: grid;
@@ -49,22 +49,22 @@
             margin: 5px;
         }
 
-            .produse:hover {
-                transform: scale(1.1);
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            }
+        .produse:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
 
-            .produse img {
-                display: grid;
-                width: 180px;
-                height: 250px;
-                margin: 20px;
-                border: 1px solid #f2f2f2;
-            }
+        .produse img {
+            display: grid;
+            width: 180px;
+            height: 250px;
+            margin: 20px;
+            border: 1px solid #f2f2f2;
+        }
 
-            .produse:hover img {
-                transform: scale(1.1);
-            }
+        .produse:hover img {
+            transform: scale(1.1);
+        }
 
         .pagina-completa {
             display: flex;
@@ -101,7 +101,7 @@
     </div>
 
     <div class="filter1">
-        <form method="get" action="@Url.Action("Index", "Filter")">
+        <form method="get" action="@Url.Action("Filter", "Filter", new { category = ViewBag.SelectedCategory })">
             <!-- FILTER: BRANDURI -->
             <div class="filter-group">
                 <label>BRANDURI:</label>
@@ -110,29 +110,35 @@
                     foreach (var brand in ViewBag.BrandList)
                     {
                         <div>
-                            <input type="checkbox" name="selectedBrands" value="@brand" id="@brand" />
+                            <input type="checkbox" name="selectedBrands" value="@brand" id="@brand" 
+                                   @if (Request["selectedBrands"] != null && Request["selectedBrands"].Contains(brand)) {
+                                       @: checked
+                                   } />
                             <label for="@brand">@brand</label>
                         </div>
                     }
                 }
             </div>
 
-            <!-- FILTER: CATEGORIA -->
+            <!-- FILTER: CATEGORII -->
             <div class="filter-group">
-                <label>CATEGORIA:</label>
+                <label>CATEGORII:</label>
                 @if (ViewBag.CategoryList != null)
                 {
                     foreach (var category in ViewBag.CategoryList)
                     {
                         <div>
-                            <input type="checkbox" name="selectedCategories" value="@category" id="@category" />
+                            <input type="checkbox" name="selectedCategories" value="@category" id="@category"
+                                   @if (Request["selectedCategories"] != null && Request["selectedCategories"].Contains(category)) {
+                                       @: checked
+                                   } />
                             <label for="@category">@category</label>
                         </div>
                     }
                 }
             </div>
 
-            <!-- FILTER: TARA -->
+            <!-- FILTER: ȚARA -->
             <div class="filter-group">
                 <label>ȚARA:</label>
                 @if (ViewBag.CountryList != null)
@@ -140,20 +146,37 @@
                     foreach (var country in ViewBag.CountryList)
                     {
                         <div>
-                            <input type="checkbox" name="selectedCountries" value="@country" id="@country" />
+                            <input type="checkbox" name="selectedCountries" value="@country" id="@country" 
+                                   @if (Request["selectedCountries"] != null && Request["selectedCountries"].Contains(country)) {
+                                       @: checked
+                                   } />
                             <label for="@country">@country</label>
                         </div>
                     }
                 }
             </div>
 
+            <!-- FILTER: PROMOȚII -->
+            <div class="filter-group">
+                <label>Promoții:</label>
+                @if (ViewBag.SpecialPromotionList != null)
+                {
+                    foreach (var promo in ViewBag.SpecialPromotionList)
+                    {
+                        <div>
+                            <input type="checkbox" name="selectedSpecialPromotions" value="@promo" id="@promo"
+                                   @if (Request["selectedSpecialPromotions"] != null && Request["selectedSpecialPromotions"].Contains(promo)) {
+                                       @: checked
+                                   } />
+                            <label for="@promo">@promo</label>
+                        </div>
+                    }
+                }
+            </div>
 
-            <button type="submit" class="btn">Aplică filtru</button>
+            <button type="submit" class="btn">Aplică Filtre</button>
         </form>
     </div>
-
-    @using WebApplication4.Domain.Entities
-    @model IEnumerable<DBProductTable>
 
     <div class="produsele">
         @foreach (var product in Model)
