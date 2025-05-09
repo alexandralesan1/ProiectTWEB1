@@ -91,7 +91,7 @@ namespace WebApplication4.Web.Controllers
                {
                     Name = username,
                     Email = email,
-                    Password = HashHelper.GenerateHash(password),
+                    Password = password,
                     Role = UserRole.Admin 
                };
 
