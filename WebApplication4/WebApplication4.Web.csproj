@@ -156,6 +156,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\ContactUsController.cs" />
+    <Compile Include="Controllers\DeliveryandPaymentController.cs" />
     <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
@@ -182,6 +183,7 @@
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\RegisterAdmin.cshtml" />
     <Content Include="Views\ContactUs\ContactUs.cshtml" />
+    <Content Include="Views\DeliveryandPayment\DeliveryandPayment.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
