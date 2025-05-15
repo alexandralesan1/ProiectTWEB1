@@ -43,12 +43,33 @@ namespace WebApplication4.BusinessLogic.Core
             }
         }
 
-        public List<DBProductTable> GetFilteredProducts(string category)
+        public List<DBProductTable> GetFilteredProducts(
+      string category,
+      string[] selectedBrands,
+      string[] selectedCategories,
+      string[] selectedCountries,
+      string[] selectedSpecialPromotions)
         {
-            return _context.Products
-                .Where(p => p.Category.ToString() == category)
-                .ToList();
+            var products = _context.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(category))
+                products = products.Where(p => p.Category.ToString() == category);
+
+            if (selectedBrands?.Length > 0)
+                products = products.Where(p => selectedBrands.Contains(p.Brand.ToString()));
+
+            if (selectedCategories?.Length > 0)
+                products = products.Where(p => selectedCategories.Contains(p.Category.ToString()));
+
+            if (selectedCountries?.Length > 0)
+                products = products.Where(p => selectedCountries.Contains(p.Country.ToString()));
+
+            if (selectedSpecialPromotions?.Length > 0)
+                products = products.Where(p => selectedSpecialPromotions.Contains(p.SpecialCategory.ToString()));
+
+            return products.ToList();
         }
+
 
     }
 

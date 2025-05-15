@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
+using WebApplication4.BusinessLogic.DBModel.AuthSession;
 using WebApplication4.Domain.Entities;
 using WebApplication4.Domain.Enums;
 
@@ -20,6 +21,7 @@ namespace WebApplication4.Controllers
                _userService = new UserService();
         }
 
+        //[AdminMod]
         public ActionResult Admin()
         {
 

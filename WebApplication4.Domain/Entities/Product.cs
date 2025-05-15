@@ -32,7 +32,7 @@ namespace WebApplication4.Domain.Entities
         public ProductBrand Brand { get; set; }
 
         [Required]
-        public ProductCategory Country { get; set; }
+        public ProductCountry Country { get; set; }
 
         [Required]
         public ProductSpecialCategory SpecialCategory { get; set; }

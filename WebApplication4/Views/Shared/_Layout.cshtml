@@ -29,18 +29,20 @@
           align-items: center;
      }
 
-          .search-container i {
-               position: absolute;
-               margin-left: 550px;
-               color: #888;
-          }
+    .search-container i {
+        position: absolute;
+        margin-left: 550px;
+        color: #888;
+    }
 
-          .search-container input {
-               padding-left: 30px;
-               height: 35px;
-               width: 100%;
-               box-sizing: border-box;
-          }
+    .search-container input {
+        padding-left: 30px; 
+        height: 35px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    
 </style>
 <body>
 
@@ -51,91 +53,104 @@
                <a href="#" class="shiping">&#9951 Livrare și plată</a>
           </div>
           <div class="top-bar">
-               <div class="logo">
-                    <a href="@Url.Action("Home", "Home")">
-                         <img src="~/Content/Images/afrodita.png" alt="APHRODITE" />
-                    </a>
-               </div>
+              <div class="logo">
+                  <a href="@Url.Action("Home", "Home")">
+                      <img src="~/Content/Images/afrodita.png" alt="APHRODITE" />
+                  </a>
+              </div>
 
-               <div class="search-container">
+              <div class="search-container">
+                 
+                  <input type="text" placeholder="Căutare produse ...">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+              </div>
 
-                    <input type="text" placeholder="Căutare produse ...">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-               </div>
-
-               <div class="user-options">
-                    @{
-                         var userSession = System.Web.HttpContext.Current.Session["UserSession"];
-                    }
-
-                    @if (userSession != null)
-                    {
-                         var user = (WebApplication4.Domain.Entities.DBUserTable)userSession;
-                         if (user.Role == WebApplication4.Domain.Enums.UserRole.Buyer)
-                         {
-                              <a href="@Url.Action("Profil", "Profil")"> @user.Name </a>
-                         }
-                         else if (user.Role == WebApplication4.Domain.Enums.UserRole.Admin)
-                         {
-                              <a href="@Url.Action("Admin", "Admin")">Admin @user.Name</a>
-                         }
-                    }
-                    else
-                    {
-                         <a href="@Url.Action("Login","Login")">Inregistrare/Logare</a>
-                    }
+              <div class="user-options">
+                  <a href="@Url.Action("Login","Login")">Inregistrare/Logare</a>
 
 
-
-                    <a href="@Url.Action("Favorite", "Favorite")" class="wishlist"><i class="fa-regular fa-heart"></i> 0</a>
-                    <a href="@Url.Action("Cart", "Cart")" class="cart">@ViewBag.CartTotalPrice MDL <i class="fa-solid fa-cart-shopping"></i> </a>
-               </div>
+                  <a href="@Url.Action("Favorite", "Favorite")" class="wishlist"><i class="fa-regular fa-heart"></i> 0</a>
+                  <a href="@Url.Action("Cart", "Cart")" class="cart">@ViewBag.CartTotalPrice MDL <i class="fa-solid fa-cart-shopping"></i> </a>
+              </div>
           </div>
 
           <!-- Navigation Menu -->
           <nav class="main-menu">
-               <ul>
-                    <li><a href="@Url.Action("Filter", "Filter")">Machiaj</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Piele</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Parfumerie</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Bărbați</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Păr</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Branduri</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Noutați</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Seturi cadou</a></li>
-                    <li><a href="@Url.Action("Filter", "Filter")">Promoții</a></li>
-               </ul>
+              <ul>
+                  <li><a href="@Url.Action("Filter", "Filter")">Machiaj</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Piele</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Parfumerie</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Bărbați</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Păr</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Branduri</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Noutați</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Seturi cadou</a></li>
+                  <li><a href="@Url.Action("Filter", "Filter")">Promoții</a></li>
+              </ul>
           </nav>
      </header>
 
-     <!-- Main Content Area -->
-     <main role="main">
-          @RenderBody()
-     </main>
+    <!-- Main Content Area -->
+    <main role="main">
+        @RenderBody()
+    </main>
 
-     <!-- Footer Section -->
-     <footer>
-          <p>&copy; 2025 - Aphrodita</p>
-          <img>
-     </footer>
+    <!-- Footer Section -->
+
+    <footer style="background-color: black; color: white; text-align: center; padding: 20px;">
+        <p>&copy; 2025 Compania Ta. Toate drepturile rezervate.</p>
+
+        <div style="margin-top: 15px;">
+            <a href="#politica"
+               style="display: inline-block; margin: 5px; padding: 10px 15px; color: white; background-color: transparent; border: 1px solid white; text-decoration: none;"
+               onmousedown="this.style.backgroundColor='#ffb6c1'"
+               onmouseup="this.style.backgroundColor='transparent'">Politica de retur</a>
+
+            <a href="#blog"
+               style="display: inline-block; margin: 5px; padding: 10px 15px; color: white; background-color: transparent; border: 1px solid white; text-decoration: none;"
+               onmousedown="this.style.backgroundColor='#ffb6c1'"
+               onmouseup="this.style.backgroundColor='transparent'">Blog</a>
+
+            <a href="@Url.Action("DeliveryandPayment", "DeliveryandPayment")"
+               style="display: inline-block; margin: 5px; padding: 10px 15px; color: white; background-color: transparent; border: 1px solid white; text-decoration: none;"
+               onmousedown="this.style.backgroundColor='#ffb6c1'"
+               onmouseup="this.style.backgroundColor='transparent'">Livrare și plată</a>
+
+            <a href="@Url.Action("Filter", "Filter")"
+               style="display: inline-block; margin: 5px; padding: 10px 15px; color: white; background-color: transparent; border: 1px solid white; text-decoration: none;"
+               onmousedown="this.style.backgroundColor='#ffb6c1'"
+               onmouseup="this.style.backgroundColor='transparent'">Promoții</a>
+
+            <a href="@Url.Action("ContactUs", "ContactUs")"
+               style="display: inline-block; margin: 5px; padding: 10px 15px; color: white; background-color: transparent; border: 1px solid white; text-decoration: none;"
+               onmousedown="this.style.backgroundColor='#ffb6c1'"
+               onmouseup="this.style.backgroundColor='transparent'">Contactează-ne</a>
+
+            <a href="#plata"
+               style="display: inline-block; margin: 5px; padding: 10px 15px; color: white; background-color: transparent; border: 1px solid white; text-decoration: none;"
+               onmousedown="this.style.backgroundColor='#ffb6c1'"
+               onmouseup="this.style.backgroundColor='transparent'">Modalități de plată</a>
+        </div>
+    </footer>
+
 
 </body>
 </html>
 
 <script>
      $(document).ready(function () {
-          $(".add-to-cart-btn").click(function () {
-               var productId = $(this).closest("form").data("id");
+        $(".add-to-cart-btn").click(function () {
+            var productId = $(this).closest("form").data("id");
 
-               $.ajax({
-                    type: "POST",
-                    url: "/Cart/AddToCart",
-                    data: { id: productId },
-                    success: function (response) {
-                         $("#cart-total").text(response.totalPrice);
-                         alert(response.message);
-                    }
-               });
-          });
-     });
+            $.ajax({
+                type: "POST",
+                url: "/Cart/AddToCart",
+                data: { id: productId },
+                success: function (response) {
+                    $("#cart-total").text(response.totalPrice);
+                    alert(response.message);
+                }
+            });
+        });
+});
 </script>

@@ -13,5 +13,13 @@ namespace WebApplication4.BusinessLogic.Interfaces
         DBProductTable GetProductById(int id);
         void AddProduct(DBProductTable product);
         void DeleteProduct(int id);
+
+
+        List<DBProductTable> GetFilteredProducts(
+            string category,
+            string[] selectedBrands,
+            string[] selectedCategories,
+            string[] selectedCountries,
+            string[] selectedSpecialPromotions);
     }
 }
