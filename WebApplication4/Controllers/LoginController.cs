@@ -11,6 +11,7 @@ namespace WebApplication4.Web.Controllers
 {
      public class LoginController : Controller
      {
+
           private readonly UserService _userService;
           private readonly SessionService _sessionService;
 
@@ -44,11 +45,12 @@ namespace WebApplication4.Web.Controllers
                     
                     _sessionService.StoreSession(authenticatedUser.Email, authCookie.Value);
                     HttpContext.Session["UserSession"] = authenticatedUser;
+                    HttpContext.Session["UserRole"] = authenticatedUser.Role;
 
                     return RedirectToAction("Home", "Home");
                }
 
-               ViewBag.LoginError = "Invalid username or password.";
+               ViewBag.LoginError = "Invalid email or password.";
                return View();
           }
 
@@ -60,6 +62,13 @@ namespace WebApplication4.Web.Controllers
           [HttpPost]
           public ActionResult Register(DBUserTable user)
           {
+               if (_userService.UserExists(user.Email, user.Name))
+               {
+                    ViewBag.RegisterError = "Email or Username already exists!";
+                    return View();
+               }
+
+               user.Role = UserRole.Buyer;
                _userService.AddUser(user);
 
                return RedirectToAction("Login");
@@ -91,10 +100,15 @@ namespace WebApplication4.Web.Controllers
                {
                     Name = username,
                     Email = email,
-                    Password = HashHelper.GenerateHash(password),
+                    Password = password,
                     Role = UserRole.Admin 
                };
 
+               if (_userService.UserExists(newAdmin.Email, newAdmin.Name))
+               {
+                    ViewBag.RegisterError = "Email or Username already exists!";
+                    return View();
+               }
                _userService.AddUser(newAdmin);
                return RedirectToAction("Login");
           }

@@ -1,0 +1,13 @@
+﻿
+@{
+     ViewBag.Title = "Profil";
+}
+@using WebApplication4.Domain.Entities
+@model DBUserTable
+
+<h2>Profilul meu</h2>
+<p><strong>Nume:</strong> @Model.Name</p>
+<p><strong>Email:</strong> @Model.Email</p>
+
+<a href="@Url.Action("Logout", "Login")" style="color: red;">Logout</a>
+

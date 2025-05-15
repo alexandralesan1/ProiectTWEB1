@@ -12,20 +12,35 @@ namespace WebApplication4.Controllers
     public class AdminController : Controller
     {
         private readonly ProductService _productService;
+          private readonly UserService _userService;
 
         public AdminController()
         {
             _productService = new ProductService();
+               _userService = new UserService();
         }
 
         public ActionResult Admin()
         {
+
             var products = _productService.GetAllProducts();
+
             ViewBag.Categories = Enum.GetValues(typeof(ProductCategory));
             ViewBag.Brand = Enum.GetValues(typeof(ProductBrand));
             ViewBag.Country = Enum.GetValues(typeof(ProductCountry));
             ViewBag.SpecialCategory = Enum.GetValues(typeof(ProductSpecialCategory));
-            return View(products);
+
+
+               var userSession = System.Web.HttpContext.Current.Session["UserSession"];
+               var userRole = System.Web.HttpContext.Current.Session["UserRole"];
+
+               if (userSession == null && userRole == null && (UserRole)userRole != UserRole.Admin)
+               {
+                    return RedirectToAction("Home", "Home");
+               }
+               
+
+               return View(products);
         }
 
         [HttpPost]

@@ -2,19 +2,130 @@
 @{
      ViewBag.Title = "Login";
 }
+
+<style>
+
+
+     body {
+          font-family: 'Montserrat', sans-serif;
+     }
+
+
+     .contact-section {
+          padding: 40px 20px;
+          background-color: #f9f9f9;
+     }
+
+     .contact-header {
+          text-align: center;
+     }
+
+          .contact-header h2 {
+               margin-bottom: 20px;
+          }
+
+     .contact-form form {
+          width: 50%;
+          margin: 0 auto;
+          background-color: white;
+          padding: 20px;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+     }
+
+     .contact-form .form-group {
+          margin-bottom: 20px;
+     }
+
+     .contact-form input, .contact-form textarea {
+          width: 100%;
+          padding: 10px;
+          font-size: 16px;
+          border: 1px solid #ddd;
+          border-radius: 5px;
+     }
+
+     .contact-info {
+          margin-top: 20px;
+          text-align: center;
+     }
+
+     .contact-bar {
+          background-color: black;
+          color: white;
+          font-size: 14px;
+          padding: 8px 20px;
+          display: flex;
+          justify-content: flex-end;
+          gap: 20px;
+     }
+
+          .contact-bar span {
+               margin-left: 20px;
+          }
+
+     .contact:hover {
+          color: #d42e6d;
+     }
+
+     .shiping:hover {
+          color: #d42e6d;
+     }
+
+     .btn-submit {
+          border: 2px solid #d42e6d;
+          color: white;
+          background-color: #d42e6d;
+          border-radius: 5px;
+     }
+
+     .contact-section {
+          padding: 40px 20px;
+          background: linear-gradient(-45deg, #ffe0ec, #fbc2eb, #a18cd1, #fad0c4);
+          background-size: 400% 400%;
+          animation: gradientMove 10s ease infinite;
+     }
+
+     .gradientMove {
+          0%
+
+     {
+          background-position: 0% 50%;
+     }
+
+     50% {
+          background-position: 100% 50%;
+     }
+
+     100% {
+          background-position: 0% 50%;
+     }
+     }
+</style>
+
+<section class=" contact-section ">
+<div class=" contact-header">
 <h2>Login</h2>
+</div>
+
+<div class="contact-form">
 @if (ViewBag.LoginError != null)
 {
      <p style="color: red;">@ViewBag.LoginError</p>
 }
 <form method="post" action="@Url.Action("Login", "Login")">
-     <label>Email:</label>
+     <div class="form-group">
+     <label class=" ">Email:</label>
      <input type="email" name="Email" required />
-
+     </div>
+     <div class="form-group">
      <label>Password:</label>
      <input type="password" name="Password" required />
-
-     <button type="submit">Login</button>
+     </div>
+     <button type="submit" class="btn-submit">Login</button>
 </form>
-<p>Nu ai un cont <a href="@Url.Action("Register", "Login")">Register here</a></p>
-
+<p class="wishlist" style="font-size: 12px; text-align: center; display: block; text-decoration: underline;">
+     Nu ai un cont <a href="@Url.Action("Register", "Login")">Register here
+</a></p>
+</div>
+</section>

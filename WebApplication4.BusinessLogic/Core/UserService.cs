@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using WebApplication4.BusinessLogic.DBModel.Seed;
 using WebApplication4.BusinessLogic.Interfaces;
 using WebApplication4.Domain.Entities;
+using WebApplication4.Domain.Enums;
 using WebApplication4.Helpers;
 
 
@@ -18,7 +19,6 @@ namespace WebApplication4.BusinessLogic.Core
         private readonly ShopDBContext _dbContext = new ShopDBContext();
         public void AddUser(DBUserTable user)
         {
-          user.Role = Domain.Enums.UserRole.Buyer;
           user.IsBlocked = false;
           user.Password = HashHelper.GenerateHash(user.Password);
           _dbContext.Users.Add(user);
@@ -26,7 +26,10 @@ namespace WebApplication4.BusinessLogic.Core
         
         }
 
-
+          public bool UserExists(string email, string username)
+          {
+               return _dbContext.Users.Any(u => u.Email == email || u.Name == username);
+          }
           public DBUserTable Authenticate(string email, string password)
           {   
                var hashPassword = HashHelper.GenerateHash(password);
@@ -38,7 +41,7 @@ namespace WebApplication4.BusinessLogic.Core
             return _dbContext.Users.FirstOrDefault(u => u.Id == id);
         }
 
-        public void BlockUser(int id)
+          public void BlockUser(int id)
         {
             var user = GetUserById(id);
             if (user != null)

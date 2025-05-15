@@ -7,6 +7,7 @@ using System.Web;
 using WebApplication4.BusinessLogic.DBModel.Seed;
 using WebApplication4.BusinessLogic.Interfaces;
 using WebApplication4.Domain.Entities;
+using WebApplication4.Domain.Enums;
 using WebApplication4.Helpers;
 
 namespace WebApplication4.BusinessLogic.Core
@@ -22,6 +23,7 @@ namespace WebApplication4.BusinessLogic.Core
 
                if (existingSession != null)
                {
+                    
                     existingSession.CookieString = cookieValue;
                     existingSession.ExpireTime = DateTime.Now.AddMinutes(60);
                     _context.SaveChanges();

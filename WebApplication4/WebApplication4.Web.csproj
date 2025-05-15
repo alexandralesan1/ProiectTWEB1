@@ -157,6 +157,7 @@
     <Compile Include="Controllers\FavoriteController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\ProfilController.cs" />
     <Compile Include="Controllers\SingleproductController.cs" />
     <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -178,6 +179,7 @@
     <Content Include="Views\Favorite\Favorite.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\RegisterAdmin.cshtml" />
+    <Content Include="Views\Profil\Profil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

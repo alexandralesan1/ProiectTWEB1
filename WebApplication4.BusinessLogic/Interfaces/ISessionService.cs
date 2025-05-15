@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication4.Domain.Entities;
+using WebApplication4.Domain.Enums;
 
 namespace WebApplication4.BusinessLogic.Interfaces
 {
