@@ -1,22 +1,4 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Web;
-//using System.Web.Mvc;
-
-//namespace WebApplication4.Controllers
-//{
-//    public class FavoriteController : Controller
-//    {
-//        // GET: Favorite
-//        public ActionResult Favorite()
-//        {
-//            return View();
-//        }
-//    }
-//}
-
-
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -51,7 +33,8 @@ namespace WebApplication4.Controllers
                 var existingItem = FavoriteItems.FirstOrDefault(f => f.Product.Id == id);
                 if (existingItem == null)
                 {
-                    FavoriteItems.Add(new DBFavoriteItemsTable { Product = product });
+                    _productService.AddFavoriteItem(new DBFavoriteItemsTable { Product = product });
+
                 }
             }
             return RedirectToAction("Favorite");

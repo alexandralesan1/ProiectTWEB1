@@ -9,6 +9,7 @@ namespace WebApplication4.Domain.Enums
      public enum UserRole
      {
           Admin,
-          Buyer
+          Buyer,
+          Guest
      }
 }

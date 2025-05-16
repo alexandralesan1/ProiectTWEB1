@@ -20,6 +20,8 @@ namespace WebApplication4.BusinessLogic.DBModel.Seed
 
         public DbSet<DBRoleTable> Roles { get; set; }
 
+        public DbSet <DBCartItemsTable> CartItems { get; set;}
+
 
         public ShopDBContext() : base("name=ShopDatabase") { }
         

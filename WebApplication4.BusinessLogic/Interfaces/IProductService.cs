@@ -14,6 +14,7 @@ namespace WebApplication4.BusinessLogic.Interfaces
         void AddProduct(DBProductTable product);
         void DeleteProduct(int id);
 
+        void AddFavoriteItem(DBFavoriteItemsTable favoriteItem);
 
         List<DBProductTable> GetFilteredProducts(
             string category,
