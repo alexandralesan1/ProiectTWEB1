@@ -43,6 +43,11 @@ namespace WebApplication4.BusinessLogic.Core
             }
         }
 
+        public void AddFavoriteItem(DBFavoriteItemsTable favoriteItem)
+        {
+            _context.Favorites.Add(favoriteItem);
+            _context.SaveChanges();
+        }
         public List<DBProductTable> GetFilteredProducts(
       string category,
       string[] selectedBrands,

@@ -4,25 +4,27 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
+using WebApplication4.BusinessLogic.DBModel.Seed;
 using WebApplication4.Domain.Entities;
 
 namespace WebApplication4.Controllers
 {
     public class CartController : Controller
     {
-        public static List<DBCartItemsTable> CartItems = new List<DBCartItemsTable>();
+        private readonly ShopDBContext _context;
         private readonly ProductService _productService;
 
         public CartController()
         {
             _productService = new ProductService();
+            _context = new ShopDBContext();
         }
 
           public ActionResult Cart()
           {
-               decimal cartTotalPrice = CartItems.Sum(item => item.FinalPrice);
+               decimal cartTotalPrice = _context.CartItems.Sum(item => item.FinalPrice);
                ViewBag.CartTotalPrice = cartTotalPrice;
-               return View(CartItems);
+               return View(_context.CartItems);
           }
 
           [HttpPost]
@@ -31,14 +33,14 @@ namespace WebApplication4.Controllers
             var product = _productService.GetProductById(id);
             if (product != null)
             {
-                var existingItem = CartItems.FirstOrDefault(c => c.Product.Id == id);
+                var existingItem = _context.CartItems.FirstOrDefault(c => c.Product.Id == id);
                 if (existingItem != null)
                 {
                     existingItem.Quantity++;
                 }
                 else
                 {
-                    CartItems.Add(new DBCartItemsTable { Product = product, Quantity = 1 });
+                    _context.CartItems.Add(new DBCartItemsTable { Product = product, Quantity = 1 });
                 }
             }
             return RedirectToAction("Cart");
@@ -47,10 +49,10 @@ namespace WebApplication4.Controllers
         [HttpPost]
         public ActionResult RemoveFromCart(int id)
         {
-            var item = CartItems.FirstOrDefault(c => c.Product.Id == id);
+            var item = _context.CartItems.FirstOrDefault(c => c.Product.Id == id);
             if (item != null)
             {
-                CartItems.Remove(item);
+                _context.CartItems.Remove(item);
             }
             return RedirectToAction("Cart");
         }
