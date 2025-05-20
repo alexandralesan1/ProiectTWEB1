@@ -1,31 +1,129 @@
-﻿
-@{
-     ViewBag.Title = "RegisterAdmin";
+﻿@{
+    ViewBag.Title = "RegisterAdmin";
 }
+<style>
+    body {
+        font-family: 'Montserrat', sans-serif;
+    }
 
-<h2>RegisterLogin</h2>
+    .gradientMove {
+        0%
 
-<h2>Admin Registration</h2>
+    {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+    }
+
+    .page-container {
+        position: relative;
+        height: 100vh;
+        padding: 60px 20px 20px; 
+        box-sizing: border-box;
+        background: linear-gradient(-45deg, #ffe0ec, #fbc2eb, #a18cd1, #fad0c4);
+        background-size: 400% 400%;
+        animation: gradientMove 10s ease infinite;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    .page-title {
+        text-align: center;
+        margin: 0 0 20px;
+        color: #5a2a4a;
+        font-weight: 700;
+        font-size: 36px;
+        position: relative;
+        z-index: 2;
+    }
+
+    
+    .register-form {
+        position: absolute;
+        top: 120px; 
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: white;
+        padding: 30px 40px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        width: 400px;
+        box-sizing: border-box;
+        z-index: 1;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 600;
+        color: #5a2a4a;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 10px 12px;
+        font-size: 16px;
+        border: 1.5px solid #ccc;
+        border-radius: 6px;
+        margin-bottom: 20px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease;
+    }
+
+        .form-input:focus {
+            border-color: #d42e6d;
+            outline: none;
+        }
+
+    .btn-submit {
+        width: 100%;
+        background-color: #d42e6d;
+        color: white;
+        font-weight: 700;
+        font-size: 18px;
+        padding: 12px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .btn-submit:hover {
+            background-color: #a72650;
+        }
+</style>
+
 @if (ViewBag.RegisterError != null)
 {
-     <p style="color: red;">@ViewBag.RegisterError</p>
+    <p class="error-message">@ViewBag.RegisterError</p>
 }
-<form method="post" action="@Url.Action("RegisterAdmin", "Login")">
-     <label>Admin Key:</label>
-     <input type="password" name="AdminKey" required />
 
-     <label>Username:</label>
-     <input type="text" name="Username" required />
+<div class="page-container">
+    <h2 class="page-title">Admin Registration</h2>
 
-     <label>Email:</label>
-     <input type="email" name="Email" required />
-     
-     <lable>Phone</lable>
-     <input type="tel" name="Phone" required>
-     
-     <label>Password:</label>
-     <input type="password" name="Password" required />
+    <form method="post" action="@Url.Action("RegisterAdmin", "Login")" class="register-form">
+        <label class="form-label">Admin Key:</label>
+        <input type="password" name="AdminKey" required class="form-input" />
 
-     <button type="submit">Register as Admin</button>
-</form>
+        <label class="form-label">Username:</label>
+        <input type="text" name="Username" required class="form-input" />
 
+        <label class="form-label">Email:</label>
+        <input type="email" name="Email" required class="form-input" />
+
+        <label class="form-label">Phone:</label>
+        <input type="tel" name="Phone" required class="form-input" />
+
+        <label class="form-label">Password:</label>
+        <input type="password" name="Password" required class="form-input" />
+
+        <button type="submit" class="btn-submit">Înregistrează-te</button>
+    </form>
+</div>
