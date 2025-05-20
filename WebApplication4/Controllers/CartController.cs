@@ -21,14 +21,24 @@ namespace WebApplication4.Controllers
             _context = new ShopDBContext();
         }
 
-          public ActionResult Cart()
+        /*  public ActionResult Cart()
           {
                decimal cartTotalPrice = _context.CartItems.Sum(item => item.FinalPrice);
                ViewBag.CartTotalPrice = cartTotalPrice;
                return View(_context.CartItems);
-          }
+          }*/
 
-          [HttpPost]
+
+        public ActionResult Cart()
+        {
+            var cartItems = _context.CartItems.ToList(); // Fetch data into memory
+            decimal cartTotalPrice = cartItems.Sum(item => item.FinalPrice); // Calculate in memory
+            ViewBag.CartTotalPrice = cartTotalPrice;
+            return View(cartItems);
+        }
+
+
+        [HttpPost]
         public ActionResult AddToCart(int id)
         {
             var product = _productService.GetProductById(id);
