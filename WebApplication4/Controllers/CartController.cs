@@ -13,6 +13,7 @@ namespace WebApplication4.Controllers
     {
         private readonly ShopDBContext _context;
         private readonly ProductService _productService;
+        internal static object CartItems;
 
         public CartController()
         {

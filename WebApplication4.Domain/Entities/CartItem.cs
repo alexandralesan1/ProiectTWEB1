@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Menu;
 
 namespace WebApplication4.Domain.Entities
 {
@@ -22,5 +23,8 @@ namespace WebApplication4.Domain.Entities
           [Required]
           public int Quantity { get; set; }
           public decimal FinalPrice => Product.Price * Quantity;
+
+
+
     }
 }

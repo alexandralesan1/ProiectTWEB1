@@ -1,0 +1,103 @@
+﻿@model List<WebApplication4.Domain.Entities.DBProductTable>
+@using System.Linq
+
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rezultate Căutare - Aphrodita</title>
+    <link rel="stylesheet" href="~/Content/style.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #f9f9f9;
+        }
+
+        .produsele {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 20px;
+        }
+
+        .produse {
+            margin: 5px;
+            background: white;
+            border-radius: 8px;
+            padding: 10px;
+            box-shadow: 0 1px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+            .produse:hover {
+                transform: scale(1.05);
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            }
+
+            .produse img {
+                width: 180px;
+                height: 250px;
+                object-fit: contain;
+                margin-bottom: 10px;
+                border: 1px solid #f2f2f2;
+                border-radius: 5px;
+            }
+
+            .produse h4 {
+                margin: 0 0 5px 0;
+            }
+
+            .produse p {
+                color: #d42e6d;
+                font-weight: bold;
+                margin: 0;
+            }
+
+        .no-results {
+            padding: 40px;
+            font-size: 1.2rem;
+            color: #555;
+            text-align: center;
+        }
+
+        .header-search {
+            padding: 20px;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 600;
+            color: #d42e6d;
+        }
+    </style>
+</head>
+<body>
+    <div class="header-search">
+        Rezultate Căutare
+    </div>
+
+    @if (Model == null || !Model.Any())
+    {
+        <div class="no-results">
+            Nu au fost găsite produse care să corespundă criteriilor de căutare.
+        </div>
+    }
+    else
+    {
+        <div class="produsele">
+            @foreach (var product in Model)
+            {
+                <div class="produse">
+                    <img src="@product.ImageUrl" alt="@product.Name" />
+                    <h4>@product.Name</h4>
+                    <p>@product.Price.ToString("C")</p>
+                </div>
+            }
+        </div>
+    }
+</body>
+</html>
