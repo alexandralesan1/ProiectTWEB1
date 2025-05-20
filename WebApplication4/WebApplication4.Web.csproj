@@ -248,6 +248,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProfilController.cs" />
+    <Compile Include="Controllers\SearchResultsController.cs" />
     <Compile Include="Controllers\SingleproductController.cs" />
     <Compile Include="Controllers\FilterController.cs" />
     <Compile Include="Global.asax.cs">
@@ -273,6 +274,7 @@
     <Content Include="Views\ContactUs\ContactUs.cshtml" />
     <Content Include="Views\DeliveryandPayment\DeliveryandPayment.cshtml" />
     <Content Include="Views\Profil\Profil.cshtml" />
+    <Content Include="Views\SearchResults\SearchResults.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
