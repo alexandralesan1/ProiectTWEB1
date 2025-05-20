@@ -22,5 +22,7 @@ namespace WebApplication4.BusinessLogic.Interfaces
             string[] selectedCategories,
             string[] selectedCountries,
             string[] selectedSpecialPromotions);
+
+        List<DBProductTable> SearchProducts(string query);
     }
 }
