@@ -22,9 +22,13 @@ namespace WebApplication4.Controllers
 
           public ActionResult Cart()
           {
-               decimal cartTotalPrice = _context.CartItems.Sum(item => item.FinalPrice);
+               var cartItems = _context.CartItems.ToList();
+               decimal cartTotalPrice = cartItems.Sum(item => item.FinalPrice);
+
+               HttpContext.Session["CartTotalPrice"] = cartTotalPrice;
                ViewBag.CartTotalPrice = cartTotalPrice;
-               return View(_context.CartItems);
+
+               return View(cartItems);
           }
 
           [HttpPost]
