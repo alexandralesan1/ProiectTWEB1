@@ -76,6 +76,18 @@ namespace WebApplication4.BusinessLogic.Core
         }
 
 
+        public List<DBProductTable> SearchProducts(string query)
+        {
+            return _context.Products
+                .Where(p =>
+                    p.Name.Contains(query) ||
+                    p.Description.Contains(query) ||
+                    p.Brand.ToString().Contains(query))
+                .ToList();
+        }
+
+
+
     }
 
 }
