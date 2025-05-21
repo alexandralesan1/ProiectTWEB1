@@ -2,52 +2,52 @@
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
 using WebApplication4.BusinessLogic.DBModel.Seed;
-using WebApplication4.BusinessLogic.Core;
+using WebApplication4.Domain.Entities;
+
 
 public class CartController : Controller
 {
-     private readonly ProductService _productService;
      private readonly CartServices _cartService;
+     private readonly SessionService _sessionService;
 
      public CartController()
      {
-          _productService = new ProductService();
-          _cartService = new CartServices(new ShopDBContext());
+          _sessionService = new SessionService(); 
+          _cartService = new CartServices(new ShopDBContext(), _sessionService); 
      }
 
 
-        public ActionResult Cart()
-        {
-            var cartItems = _context.CartItems.ToList();
-            decimal cartTotalPrice = cartItems.Sum(item => item.FinalPrice);
-            ViewBag.CartTotalPrice = cartTotalPrice;
-            return View(cartItems);
-        }
+     public ActionResult Cart()
+     {
+          var userId = _sessionService.GetLoggedInUserId(); 
+          if (userId == null)
+          {
+               return RedirectToAction("Login", "Login"); 
+          }
 
+          var userCartItems = _cartService.GetCartItems(userId.Value);
+          ViewBag.CartTotalPrice = _cartService.GetCartTotal(userId.Value);
 
-        [HttpPost]
-        public ActionResult AddToCart(int id)
-        {
-            var product = _productService.GetProductById(id);
-            if (product != null)
-            {
-                var existingItem = _context.CartItems.FirstOrDefault(c => c.Product.Id == id);
-                if (existingItem != null)
-                {
-                    existingItem.Quantity++;
-                }
-                else
-                {
-                    _context.CartItems.Add(new DBCartItemsTable { Product = product, Quantity = 1 });
-                }
-            }
-            return RedirectToAction("Cart");
-        }
+          return View(userCartItems);
+     }
+
+     [HttpPost]
+     public ActionResult AddToCart(int id)
+     {
+          var userId = _sessionService.GetLoggedInUserId(); 
+          if (userId == null)
+          {
+               return RedirectToAction("Login", "Login");
+          }
+
+          _cartService.AddToCart(userId.Value, id);
+          return RedirectToAction("Cart");
+     }
 
      [HttpPost]
      public ActionResult RemoveFromCart(int id)
      {
-          var userId = _cartService.GetLoggedInUserId();
+          var userId = _sessionService.GetLoggedInUserId();
           if (userId == null)
           {
                return RedirectToAction("Login", "Login");

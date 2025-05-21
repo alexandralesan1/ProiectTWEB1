@@ -9,12 +9,11 @@ using WebApplication4.Domain.Entities;
 public class BaseController : Controller
 {
      private readonly SessionService _sessionService;
-     private readonly CartServices _cartService;
 
      public BaseController()
      {
           _sessionService = new SessionService();
-          _cartService = new CartServices(new ShopDBContext()); // Inject DB context into service
+         
      }
 
      protected override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -38,18 +37,6 @@ public class BaseController : Controller
           {
                HttpContext.Session["LoginStatus"] = "logout";
           }
-
-          var userSession = System.Web.HttpContext.Current.Session["UserSession"] as DBUserTable;
-          if (userSession != null)
-          {
-               ViewBag.CartTotalPrice = _cartService.GetCartTotal(userSession.Id);
-          }
-          else
-          {
-               ViewBag.CartTotalPrice = 0;
-          }
-
-          base.OnActionExecuting(filterContext);
      }
 
      private void ExpireCookie(string cookieName)

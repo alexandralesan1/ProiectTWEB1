@@ -19,7 +19,7 @@ namespace WebApplication4.BusinessLogic.Core
 
           public void StoreSession(string email, string cookieValue)
           {
-               var existingSession = _context.Session.FirstOrDefault(s => s.Username == email);
+               var existingSession = _context.Session.FirstOrDefault(s => s.Email == email);
 
                if (existingSession != null)
                {
@@ -32,7 +32,7 @@ namespace WebApplication4.BusinessLogic.Core
                {
                     _context.Session.Add(new DBSessionTable
                     {
-                         Username = email,
+                         Email = email,
                          CookieString = cookieValue,
                          ExpireTime = DateTime.Now.AddMinutes(60)
                     });
@@ -44,7 +44,7 @@ namespace WebApplication4.BusinessLogic.Core
           {
                var session = _context.Session.FirstOrDefault(s => s.CookieString == cookieValue);
                return session != null && session.ExpireTime > DateTime.Now ?
-                      _context.Users.FirstOrDefault(u => u.Email == session.Username) : null;
+                      _context.Users.FirstOrDefault(u => u.Email == session.Email) : null;
           }
           public string RetrieveSession(string cookieValue)
           {
@@ -60,15 +60,28 @@ namespace WebApplication4.BusinessLogic.Core
 
                if (session.ExpireTime <= DateTime.Now)
                {
-                    Console.WriteLine("Session expired for user: " + session.Username);
+                    Console.WriteLine("Session expired for user: " + session.Email);
                     return null;
                }
 
-               return session.Username;
+               return session.Email;
           }
           public void Logout(string v)
           {
                HttpContext.Current.Session.Clear();
+          }
+
+
+          public int? GetLoggedInUserId()
+          {
+               var authCookie = System.Web.HttpContext.Current.Request.Cookies["X-KEY"];
+               if (authCookie == null) return null; 
+
+               var userEmail = RetrieveSession(authCookie.Value);
+               if (string.IsNullOrEmpty(userEmail)) return null; 
+
+               var user = _context.Users.FirstOrDefault(u => u.Email == userEmail);
+               return user?.Id;
           }
      }
 }

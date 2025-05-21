@@ -55,7 +55,7 @@ namespace WebApplication4.Controllers
                 ImageFile.SaveAs(path);
                 product.ImageUrl = "/Content/images/" + fileName;
             }
-
+            product.InStock = true;
             _productService.AddProduct(product);
             return RedirectToAction("Admin");
         }

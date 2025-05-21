@@ -24,9 +24,9 @@ namespace WebApplication4.Domain.Entities
 
           [Required]
           public int Quantity { get; set; }
-          public decimal FinalPrice => Product.Price * Quantity;
+          public decimal FinalPrice => Product != null ? Product.Price * Quantity : 0;
 
 
 
-    }
+     }
 }

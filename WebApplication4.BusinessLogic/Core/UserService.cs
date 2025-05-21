@@ -70,8 +70,6 @@ namespace WebApplication4.BusinessLogic.Core
         }
 
 
-
-        
-
+ 
     }
 }

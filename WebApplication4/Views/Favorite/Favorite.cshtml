@@ -1,120 +1,120 @@
 ﻿
 @{
-    ViewBag.Title = "Favorite";
+     ViewBag.Title = "Favorite";
 }
 <style>
+     .favorites-wrapper {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          background: linear-gradient(to right, #ffdcc5, #d2a8ff);
+          padding: 20px;
+     }
 
-    body {
-        font-family: 'Montserrat', sans-serif;
-        background-color: #f9f9f9;
-        margin: 0;
-        padding: 0;
-    }
+     .favorites-title {
+          font-size: 24px;
+          margin-bottom: 20px;
+     }
 
-    .favorites-container {
-        width: 90%;
-        margin: 20px auto;
-        background-color: white;
-        border-radius: 8px;
-        padding: 20px;
-        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    }
+     .favorites-container {
+          display: flex;
+          flex-wrap: wrap;
+          gap: 30px;
+          justify-content: center;
+     }
 
-    h2 {
-        text-align: center;
-        color: #d42e6d;
-    }
+     .favorite-card {
+          width: 250px;
+          background: white;
+          border: 1px solid #ddd;
+          border-radius: 10px;
+          padding: 15px;
+          text-align: center;
+          box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+          transition: transform 0.3s ease, box-shadow 0.3s ease;
+     }
 
-    .favorite-item {
-        display: flex;
-        align-items: center;
-        border-bottom: 1px solid #ddd;
-        padding: 15px 0;
-    }
+          .favorite-card:hover {
+               transform: scale(1.05); 
+               box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.2);
+          }
 
-        .favorite-item:last-child {
-            border-bottom: none;
-        }
+     .favorite-img {
+          width: 100%;
+          height: 200px;
+          object-fit: cover;
+          border-radius: 10px;
+     }
 
-        .favorite-item img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-right: 20px;
-        }
+     .favorite-details h3 {
+          font-size: 18px;
+          margin: 15px 0;
+     }
 
-    .favorite-details {
-        flex-grow: 1;
-    }
+     .price {
+          font-size: 16px;
+          color: #333;
+          font-weight: bold;
+     }
 
-        .favorite-details h3 {
-            margin: 0;
-            font-size: 18px;
-            color: #333;
-        }
+     button {
+          width: 100%;
+          padding: 10px;
+          margin-top: 8px;
+          border: none;
+          cursor: pointer;
+          border-radius: 5px;
+          transition: background 0.3s ease;
+     }
 
-        .favorite-details p {
-            font-size: 14px;
-            color: #777;
-            margin: 5px 0;
-        }
+     .btn-add {
+          background-color: #ff4081;
+          color: white;
+     }
 
-    .price {
-        font-size: 16px;
-        color: #d42e6d;
-        font-weight: bold;
-    }
+          .btn-add:hover {
+               background-color: #d63369;
+          }
 
-    button {
-        background-color: #d42e6d;
-        color: white;
-        border: none;
-        padding: 10px 15px;
-        cursor: pointer;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-    }
+     .btn-remove {
+          background-color: #ff1744;
+          color: white;
+     }
 
-        button:hover {
-            background-color: white;
-            color: #d42e6d;
-            border: 2px solid #d42e6d;
-        }
-
-
-
-    .favorite-item img {
-        margin: 0 auto 15px;
-    }
-
+          .btn-remove:hover {
+               background-color: #d11538; 
+          }
 </style>
-<h2>Favorite</h2>
 
 
-<h2>Lista Favoritelor</h2>
-<table>
-    <tr>
-        <th>Produs</th>
-        <th>Descriere</th>
-        <th>Preț</th>
-        <th>Acțiuni</th>
-    </tr>
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                <img src="@item.Product.ImageUrl" alt="@item.Product.Name" style="width: 50px; height: 50px; border-radius: 8px;">
-                @item.Product.Name
-            </td>
-            <td>@item.Product.Price mdl</td>
-            <td>
-                <form action="@Url.Action("AddToFavorites", "Favorite")" method="post">
-                    <input type="hidden" name="id" value="@item.Product.Id" />
-                    <button type="submit">Elimină</button>
-                </form>
-            </td>
-        </tr>
-    }
-</table>
+@using WebApplication4.Domain.Entities;
+@model List<DBFavoriteItemsTable>
 
+
+<div class="favorites-wrapper">
+     <h2 class="favorites-title">Produsele Favorite</h2>
+
+     <div class="favorites-container">
+          @foreach (var item in Model)
+          {
+               <div class="favorite-card">
+                    <img src="@item.Product.ImageUrl" class="favorite-img" alt="@item.Product.Name">
+                    <div class="favorite-details">
+                         <h3>@item.Product.Name</h3>
+                         <p class="price">@item.Product.Price.ToString("N2") mdl</p>
+
+                         <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                              <input type="hidden" name="id" value="@item.ProductId" />
+                              <button type="submit" class="btn-add">Adaugă în Coș</button>
+                         </form>
+
+                         <form action="@Url.Action("RemoveFromFavorites", "Favorite")" method="post">
+                              <input type="hidden" name="id" value="@item.ProductId" />
+                              <button type="submit" class="btn-remove">Șterge</button>
+                         </form>
+                    </div>
+               </div>
+          }
+     </div>
+</div>

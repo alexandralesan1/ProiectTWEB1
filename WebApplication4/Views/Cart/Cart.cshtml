@@ -86,15 +86,15 @@
 
 @model List<WebApplication4.Domain.Entities.DBCartItemsTable>
 
-<h2>Coș de cumpărături</h2>
+<h2>Shopping Cart</h2>
 
 <table>
      <tr>
-          <th>Produs</th>
-          <th>Preț Unitar</th>
-          <th>Cantitate</th>
-          <th>Preț Total</th>
-          <th>Acțiuni</th>
+          <th>Product</th>
+          <th>Unit Price</th>
+          <th>Quantity</th>
+          <th>Total Price</th>
+          <th>Actions</th>
      </tr>
      @foreach (var item in Model)
      {
@@ -106,7 +106,7 @@
                <td>
                     <form action="@Url.Action("RemoveFromCart", "Cart")" method="post">
                          <input type="hidden" name="id" value="@item.ProductId" />
-                         <button type="submit">Șterge</button>
+                         <button type="submit">Remove</button>
                     </form>
                </td>
           </tr>

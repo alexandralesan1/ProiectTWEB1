@@ -15,7 +15,10 @@ namespace WebApplication4.Domain.Entities
           public int Id { get; set; }
           [Required]
           public int UserId { get; set; }
+
           [Required]
+          public int ProductId { get; set; }
+          [ForeignKey("ProductId")]
           public DBProductTable Product { get; set; }
     }
 }

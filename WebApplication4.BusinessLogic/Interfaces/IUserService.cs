@@ -16,8 +16,5 @@ namespace WebApplication4.BusinessLogic.Interfaces
           void BlockUser(int id);
           void DeleteUser(int id);
           DBUserTable GetUserByEmail(string email);
-         // string HashPassword(string password);
-         // bool VerifyPassword(string inputPassword, string storedPassword);
-         //void UpdatePassword(int id, string newPassword);
      }
 }

@@ -44,10 +44,5 @@ namespace WebApplication4.Domain.Entities
         [Required]
         public bool InStock { get; set; } = true;
 
-       
-        [NotMapped]
-        public string ImagePath => ImageUrl;
-
-
     }
 }

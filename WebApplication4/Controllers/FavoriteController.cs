@@ -5,52 +5,60 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
+using WebApplication4.BusinessLogic.DBModel.Seed;
 using WebApplication4.Domain.Entities;
 
 namespace WebApplication4.Controllers
 {
-    public class FavoriteController : Controller
-    {
-        private static List<DBFavoriteItemsTable> FavoriteItems = new List<DBFavoriteItemsTable>();
-        private readonly ProductService _productService;
+     public class FavoriteController : Controller
+     {
+          private readonly FavoriteServices _favoriteService;
+          private readonly SessionService _sessionService;
 
-        public FavoriteController()
-        {
-            _productService = new ProductService();
-        }
+          public FavoriteController()
+          {
+               _sessionService = new SessionService();
+               _favoriteService = new FavoriteServices(new ShopDBContext(), _sessionService);
+          }
 
-        public ActionResult Favorite()
-        {
-            return View(FavoriteItems);
-        }
+          public ActionResult Favorite()
+          {
+               var userId = _sessionService.GetLoggedInUserId();
+               if (userId == null)
+               {
+                    return RedirectToAction("Login", "Login");
+               }
 
-        [HttpPost]
-        public ActionResult AddToFavorites(int id)
-        {
-            var product = _productService.GetProductById(id);
-            if (product != null)
-            {
-                var existingItem = FavoriteItems.FirstOrDefault(f => f.Product.Id == id);
-                if (existingItem == null)
-                {
-                    _productService.AddFavoriteItem(new DBFavoriteItemsTable { Product = product });
+               var userFavorites = _favoriteService.GetFavoriteItems(userId.Value);
+               return View(userFavorites);
+          }
 
-                }
-            }
-            return RedirectToAction("Favorite");
-        }
+          [HttpPost]
+          public ActionResult AddToFavorites(int id)
+          {
+               var userId = _sessionService.GetLoggedInUserId();
+               if (userId == null)
+               {
+                    return RedirectToAction("Login", "Login");
+               }
 
-        [HttpPost]
-        public ActionResult RemoveFromFavorites(int id)
-        {
-            var item = FavoriteItems.FirstOrDefault(f => f.Product.Id == id);
-            if (item != null)
-            {
-                FavoriteItems.Remove(item);
-            }
-            return RedirectToAction("Favorite");
-        }
-    }
+               _favoriteService.AddToFavorites(userId.Value, id);
+               return RedirectToAction("Favorite");
+          }
+
+          [HttpPost]
+          public ActionResult RemoveFromFavorites(int id)
+          {
+               var userId = _sessionService.GetLoggedInUserId();
+               if (userId == null)
+               {
+                    return RedirectToAction("Login", "Login");
+               }
+
+               _favoriteService.RemoveFromFavorites(userId.Value, id);
+               return RedirectToAction("Favorite");
+          }
+     }
 
 
 }

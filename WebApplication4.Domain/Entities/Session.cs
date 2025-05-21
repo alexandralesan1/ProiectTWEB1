@@ -16,7 +16,7 @@ namespace WebApplication4.Domain.Entities
           public int Id { get; set; }
 
           [Required]
-          public string Username { get; set; }
+          public string Email { get; set; }
 
           [Required]
           public string CookieString { get; set; }

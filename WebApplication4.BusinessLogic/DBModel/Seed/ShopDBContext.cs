@@ -14,7 +14,7 @@ namespace WebApplication4.BusinessLogic.DBModel.Seed
     {
         public DbSet<DBProductTable> Products { get; set; }
         public DbSet<DBUserTable> Users { get; set; }
-        public DbSet<DBFavoriteItemsTable> Favorites { get; set; }
+        public DbSet<DBFavoriteItemsTable> FavoriteItems { get; set; }
 
         public DbSet<DBSessionTable> Session { get; set; }
 

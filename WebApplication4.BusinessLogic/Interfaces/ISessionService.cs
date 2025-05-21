@@ -13,5 +13,6 @@ namespace WebApplication4.BusinessLogic.Interfaces
           void StoreSession(string email, string cookieValue);
           DBUserTable ValidateSession(string cookieValue);
           void Logout(string v);
+          int? GetLoggedInUserId();
      }
 }
