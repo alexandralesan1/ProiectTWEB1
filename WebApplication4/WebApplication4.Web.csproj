@@ -301,7 +301,7 @@
     <None Include="packages.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Singleproduct\singleproduct.cshtml" />
+    <Content Include="Views\Singleproduct\Singleproduct.cshtml" />
     <Content Include="Views\Filter\Filter.cshtml" />
     <Content Include="Views\Admin\Admin.cshtml" />
     <Content Include="Views\Cart\Cart.cshtml" />

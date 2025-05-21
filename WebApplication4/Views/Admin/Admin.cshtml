@@ -1,106 +1,104 @@
-﻿﻿
-@{
+﻿@{
     ViewBag.Title = "Admin";
 }
 @using WebApplication4.Domain.Entities
 @model IEnumerable<DBProductTable>
 
 <style>
-     body {
-          font-family: 'Montserrat', sans-serif;
-          background-color: #f9f9f9;
-          margin: 0;
-          padding: 0;
-     }
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background-color: #f9f9f9;
+        margin: 0;
+        padding: 0;
+    }
 
+    h2 {
+        text-align: center;
+        margin: 20px auto;
+        color: #333;
+        font-size: 18px;
+    }
 
-     h2 {
-          text-align: center;
-          margin: 20px auto;
-          color: #333;
-     }
+    table {
+        width: 90%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background-color: white;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+    }
 
-     table {
-          width: 90%;
-          margin: 20px auto;
-          border-collapse: collapse;
-          background-color: white;
-          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-          border-radius: 8px;
-     }
+        table th, table td {
+            text-align: center;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            font-size: 12px;
+            color: #333;
+        }
 
-          table th, table td {
-               text-align: center;
-               padding: 15px;
-               border-bottom: 1px solid #ddd;
-          }
+        table th {
+            background-color: #d42e6d;
+            color: white;
+            font-size: 16px;
+            text-transform: uppercase;
+        }
 
-          table th {
-               background-color: #d42e6d;
-               color: white;
-               font-size: 16px;
-               text-transform: uppercase;
-          }
+        table tr:hover {
+            background-color: #f2f2f2;
+        }
 
-          table td {
-               font-size: 14px;
-               color: #333;
-          }
+    .button1 {
+        border: 2px solid #d42e6d;
+        color: white;
+        background-color: #d42e6d;
+        padding: 8px 15px;
+        font-size: 14px;
+        cursor: pointer;
+        border-radius: 5px;
+        transition: 0.3s ease;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+    }
 
-          table tr:hover {
-               background-color: #f2f2f2;
-          }
+        .button1:hover {
+            background-color: white;
+            color: #d42e6d;
+        }
 
+    .contact-form form {
+        margin: 20px auto;
+        width: 90%;
+        background-color: white;
+        padding: 20px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
 
-     .button1 {
-          border: 2px solid #d42e6d;
-          color: white;
-          background-color: #d42e6d;
-          padding: 8px 15px;
-          font-size: 14px;
-          cursor: pointer;
-          border-radius: 5px;
-          transition: 0.3s ease;
-          text-align: center;
-          text-decoration: none;
-          display: inline-block;
-     }
+    .form-section {
+        display: flex;
+        flex-direction: column;
+    }
 
-          .button1:hover {
-               background-color: white;
-               color: #d42e6d;
-          }
+        .form-section label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
 
-
-     table th, table td {
-          font-size: 12px;
-          padding: 10px;
-     }
-
-     h2 {
-          font-size: 18px;
-     }
-     .contact-form form {
-          margin: 20px auto;
-          width: 90%;
-          background-color: white;
-          padding: 20px;
-          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-          display: flex;
-     }
-
-     .contact-form .group-section {
-          text-align:center;
-          
-     }
+        .form-section input,
+        .form-section select,
+        .form-section textarea {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
 </style>
 
-
 <div>
-<h2>Administrare Produse</h2>
+    <h2>Administrare Produse</h2>
 </div>
-
-
 
 <div class="contact-form">
      <form action="@Url.Action("AddProduct", "Admin")" method="post" enctype="multipart/form-data">
@@ -165,26 +163,31 @@
      </form>
 </div>
 
-
 <div>
-<table>
-    <tr>
-        <th>Produs</th>
-    </tr>
-    @foreach (var product in Model)
-    {
+    <table>
         <tr>
-            <td>@product.Name - @product.Price MDL - @product.Brand - @product.Category - @product.Country - @product.SpecialCategory </td>
-            <td>
-                <form action="@Url.Action("DeleteProduct", "Admin")" method="post">
-                    <input type="hidden" name="id" value="@product.Id" />
-                    <button class="button1" type="submit">Șterge</button>
-                </form>
-            </td>
+            <th>Produs</th>
+            <th>Descriere</th>
+            <th>Disponibil</th>
+            <th>Acțiune</th>
         </tr>
-    }
-</table>
-</div> 
-
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    @product.Name - @product.Price MDL - @product.Brand - @product.Category - @product.Country - @product.SpecialCategory
+                </td>
+                <td>@product.Description</td>
+                <td>@(product.InStock ? "Da" : "Nu")</td>
+                <td>
+                    <form action="@Url.Action("DeleteProduct", "Admin")" method="post">
+                        <input type="hidden" name="id" value="@product.Id" />
+                        <button class="button1" type="submit">Șterge</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
 
 <a class="button1" href="@Url.Action("Logout", "Login")">Logout</a>

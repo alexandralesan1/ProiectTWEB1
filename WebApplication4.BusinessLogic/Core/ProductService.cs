@@ -87,6 +87,12 @@ namespace WebApplication4.BusinessLogic.Core
                 .ToList();
         }
 
-     }
+
+        public DBProductTable GetProductByName(string name)
+        {
+            return _context.Products.FirstOrDefault(p => p.Name == name);
+        }
+
+    }
 
 }

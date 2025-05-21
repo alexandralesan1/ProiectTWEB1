@@ -41,6 +41,13 @@ namespace WebApplication4.Domain.Entities
         [StringLength(1000)]
         public string Description { get; set; }
 
+        [Required]
+        public bool InStock { get; set; } = true;
+
+       
+        [NotMapped]
+        public string ImagePath => ImageUrl;
+
 
     }
 }

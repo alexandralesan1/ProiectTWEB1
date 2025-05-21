@@ -16,14 +16,7 @@ namespace WebApplication4
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            var context = new ShopDBContext(); 
-            if (!context.Roles.Any())  
-            {
-                context.Roles.Add(new DBRoleTable { Id = 1, Name = "Admin" });
-                context.Roles.Add(new DBRoleTable { Id = 2, Name = "Client" });
-                context.Roles.Add(new DBRoleTable { Id = 3, Name = "Guest" });
-                context.SaveChanges();  
-            }
+         
         }
     }
 }

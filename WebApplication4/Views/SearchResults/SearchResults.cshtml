@@ -73,6 +73,11 @@
             font-weight: 600;
             color: #d42e6d;
         }
+
+        .product-link {
+            text-decoration: none;
+            color: inherit;
+        }
     </style>
 </head>
 <body>
@@ -91,11 +96,13 @@
         <div class="produsele">
             @foreach (var product in Model)
             {
-                <div class="produse">
-                    <img src="@product.ImageUrl" alt="@product.Name" />
-                    <h4>@product.Name</h4>
-                    <p>@product.Price.ToString("C")</p>
-                </div>
+                <a href="@Url.Action("SingleProduct", "SingleProduct", new { name = product.Name })" class="product-link">
+                    <div class="produse">
+                        <img src="@product.ImageUrl" alt="@product.Name" />
+                        <h4>@product.Name</h4>
+                        <p>@product.Price.ToString("C")</p>
+                    </div>
+                </a>
             }
         </div>
     }

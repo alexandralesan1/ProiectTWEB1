@@ -26,7 +26,8 @@ namespace WebApplication4.BusinessLogic.Interfaces
 
         List<DBProductTable> SearchProducts(string query);
 
+        DBProductTable GetProductByName(string name);
 
-      
-     }
+
+    }
 }
