@@ -230,15 +230,6 @@
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\ISessionService.cs" />
     <Compile Include="Interfaces\IUserService.cs" />
-    <Compile Include="Migrations\202505151616218_InitialCreate.cs" />
-    <Compile Include="Migrations\202505151616218_InitialCreate.Designer.cs">
-      <DependentUpon>202505151616218_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202505201418494_NumeMigrare.cs" />
-    <Compile Include="Migrations\202505201418494_NumeMigrare.Designer.cs">
-      <DependentUpon>202505201418494_NumeMigrare.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -254,14 +245,6 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\202505151616218_InitialCreate.resx">
-      <DependentUpon>202505151616218_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202505201418494_NumeMigrare.resx">
-      <DependentUpon>202505201418494_NumeMigrare.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

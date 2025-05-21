@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
 using WebApplication4.BusinessLogic.DBModel.Seed;
-using WebApplication4.Domain.Entities;
+using WebApplication4.BusinessLogic.Core;
 
 public class CartController : Controller
 {
@@ -15,18 +15,11 @@ public class CartController : Controller
           _cartService = new CartServices(new ShopDBContext());
      }
 
-        /*  public ActionResult Cart()
-          {
-               decimal cartTotalPrice = _context.CartItems.Sum(item => item.FinalPrice);
-               ViewBag.CartTotalPrice = cartTotalPrice;
-               return View(_context.CartItems);
-          }*/
-
 
         public ActionResult Cart()
         {
-            var cartItems = _context.CartItems.ToList(); // Fetch data into memory
-            decimal cartTotalPrice = cartItems.Sum(item => item.FinalPrice); // Calculate in memory
+            var cartItems = _context.CartItems.ToList();
+            decimal cartTotalPrice = cartItems.Sum(item => item.FinalPrice);
             ViewBag.CartTotalPrice = cartTotalPrice;
             return View(cartItems);
         }
