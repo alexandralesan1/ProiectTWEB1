@@ -3,7 +3,7 @@
 }
 
 @using WebApplication4.Domain.Entities
-@model List<DBCartItemsTable>
+
 
 <style>
      body {
@@ -84,6 +84,8 @@
 
 
 
+@model List<WebApplication4.Domain.Entities.DBCartItemsTable>
+
 <h2>Coș de cumpărături</h2>
 
 <table>
@@ -98,17 +100,20 @@
      {
           <tr>
                <td>@item.Product.Name</td>
-               <td>@item.Product.Price mdl</td>
-               <td>@item.Quantity</td>
-               <td>@item.FinalPrice mdl</td>
+               <td>@item.Product.Price.ToString("N2") mdl</td>
+               <td>@item.Quantity</td> 
+               <td>@item.FinalPrice.ToString("N2") mdl</td>
                <td>
                     <form action="@Url.Action("RemoveFromCart", "Cart")" method="post">
-                         <input type="hidden" name="id" value="@item.Product.Id" />
+                         <input type="hidden" name="id" value="@item.ProductId" />
                          <button type="submit">Șterge</button>
                     </form>
                </td>
           </tr>
      }
-
 </table>
-<h3>Total Price: @ViewBag.CartTotalPrice mdl</h3>
+
+<h3>Total Price: @ViewBag.CartTotalPrice.ToString("N2") mdl</h3>
+
+
+

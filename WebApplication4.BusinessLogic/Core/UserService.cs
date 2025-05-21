@@ -71,71 +71,7 @@ namespace WebApplication4.BusinessLogic.Core
 
 
 
-        //private string HashPassword(string password)
-        //{
-        //    using (var sha256 = System.Security.Cryptography.SHA256.Create())
-        //    {
-        //        var bytes = Encoding.UTF8.GetBytes(password);
-        //        var hash = sha256.ComputeHash(bytes);
-        //        return Convert.ToBase64String(hash);
-        //    }
-        //}
-
-        //private bool VerifyPassword(string inputPassword, string storedPassword)
-        //{
-        //    var inputHash = HashPassword(inputPassword);
-        //    return inputHash == storedPassword; 
-        //}
-
-
-        //public DBUserTable Authenticate(string email, string password)
-        //{
-        //    var user = _dbContext.Users.FirstOrDefault(u => u.Email == email); if (user != null && VerifyPassword(password, user.Password))
-        //    {
-        //        return user; 
-        //    }
-
-        //    return null;
-        //    ;
-        //}
-
-
-        //public void UpdatePassword(int id, string newPassword)
-        //{
-        //    var user = GetUserById(id);
-        //    if (user != null)
-        //    {
-        //        user.Password = HashPassword(newPassword); 
-        //        _dbContext.SaveChanges();
-        //    }
-        //}
-
-
-        //private string HashPassword(string password)
-        //{
-        //    using (var sha256 = System.Security.Cryptography.SHA256.Create())
-        //    {
-        //        var bytes = Encoding.UTF8.GetBytes(password);
-        //        var hash = sha256.ComputeHash(bytes);
-        //        return Convert.ToBase64String(hash);
-        //    }
-        //}
-
-          //public bool VerifyPassword(string inputPassword, string storedPassword)
-          //{
-          //     var inputHash = HashPassword(inputPassword);
-          //     return inputHash == storedPassword;
-          //}
-
-        //public void UpdatePassword(int id, string newPassword)
-        //{
-        //    var user = GetUserById(id);
-        //    if (user != null)
-        //    {
-        //        user.Password = HashPassword(newPassword); 
-        //        _dbContext.SaveChanges();
-        //    }
-        //}
+        
 
     }
 }

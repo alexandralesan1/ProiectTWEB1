@@ -21,7 +21,7 @@ namespace WebApplication4.Controllers
                _userService = new UserService();
         }
 
-        //[AdminMod]
+
         public ActionResult Admin()
         {
 

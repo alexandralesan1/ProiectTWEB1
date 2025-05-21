@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using WebApplication4.BusinessLogic.DBModel.Seed;
 using WebApplication4.BusinessLogic.Interfaces;
 using WebApplication4.Domain.Entities;
@@ -86,8 +87,6 @@ namespace WebApplication4.BusinessLogic.Core
                 .ToList();
         }
 
-
-
-    }
+     }
 
 }

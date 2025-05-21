@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using WebApplication4.Domain.Entities;
 
 namespace WebApplication4.BusinessLogic.Interfaces
@@ -24,5 +25,8 @@ namespace WebApplication4.BusinessLogic.Interfaces
             string[] selectedSpecialPromotions);
 
         List<DBProductTable> SearchProducts(string query);
-    }
+
+
+      
+     }
 }

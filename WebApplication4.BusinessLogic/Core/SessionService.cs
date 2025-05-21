@@ -46,7 +46,26 @@ namespace WebApplication4.BusinessLogic.Core
                return session != null && session.ExpireTime > DateTime.Now ?
                       _context.Users.FirstOrDefault(u => u.Email == session.Username) : null;
           }
+          public string RetrieveSession(string cookieValue)
+          {
+               if (string.IsNullOrEmpty(cookieValue)) return null; 
 
+               var session = _context.Session.FirstOrDefault(s => s.CookieString == cookieValue);
+
+               if (session == null)
+               {
+                    Console.WriteLine("Session not found for cookie: " + cookieValue);
+                    return null;
+               }
+
+               if (session.ExpireTime <= DateTime.Now)
+               {
+                    Console.WriteLine("Session expired for user: " + session.Username);
+                    return null;
+               }
+
+               return session.Username;
+          }
           public void Logout(string v)
           {
                HttpContext.Current.Session.Clear();

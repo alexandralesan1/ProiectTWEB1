@@ -1,60 +1,64 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using WebApplication4.BusinessLogic.Core;
-using WebApplication4.Controllers;
-using WebApplication4.Domain.Entities;  // importă modelul pentru DBCartItemsTable
+using WebApplication4.BusinessLogic.DBModel.Seed;
+using WebApplication4.Domain.Entities;
 
 public class BaseController : Controller
 {
-    private readonly SessionService _sessionService = new SessionService();
+     private readonly SessionService _sessionService;
+     private readonly CartServices _cartService;
 
-    protected override void OnActionExecuting(ActionExecutingContext filterContext)
-    {
-        var apiCookie = Request.Cookies["X-KEY"];
-        if (apiCookie != null)
-        {
-            var profile = _sessionService.ValidateSession(apiCookie.Value);
-            if (profile != null)
-            {
-                HttpContext.Session["UserSession"] = profile;
-                HttpContext.Session["LoginStatus"] = "login";
-            }
-            else
-            {
-                HttpContext.Session.Clear();
-                ExpireCookie("X-KEY");
-            }
-        }
-        else
-        {
-            HttpContext.Session["LoginStatus"] = "logout";
-        }
+     public BaseController()
+     {
+          _sessionService = new SessionService();
+          _cartService = new CartServices(new ShopDBContext()); // Inject DB context into service
+     }
 
-        // Cast la lista concretă
-        var cartItems = CartController.CartItems as List<DBCartItemsTable>;
+     protected override void OnActionExecuting(ActionExecutingContext filterContext)
+     {
+          var apiCookie = Request.Cookies["X-KEY"];
+          if (apiCookie != null)
+          {
+               var profile = _sessionService.ValidateSession(apiCookie.Value);
+               if (profile != null)
+               {
+                    HttpContext.Session["UserSession"] = profile;
+                    HttpContext.Session["LoginStatus"] = "login";
+               }
+               else
+               {
+                    HttpContext.Session.Clear();
+                    ExpireCookie("X-KEY");
+               }
+          }
+          else
+          {
+               HttpContext.Session["LoginStatus"] = "logout";
+          }
 
-        if (cartItems != null && cartItems.Any())
-        {
-            ViewBag.CartTotalPrice = cartItems.Sum(item => item.FinalPrice);
-        }
-        else
-        {
-            ViewBag.CartTotalPrice = 0;
-        }
+          var userSession = System.Web.HttpContext.Current.Session["UserSession"] as DBUserTable;
+          if (userSession != null)
+          {
+               ViewBag.CartTotalPrice = _cartService.GetCartTotal(userSession.Id);
+          }
+          else
+          {
+               ViewBag.CartTotalPrice = 0;
+          }
 
-        base.OnActionExecuting(filterContext);
-    }
+          base.OnActionExecuting(filterContext);
+     }
 
-    private void ExpireCookie(string cookieName)
-    {
-        if (Request.Cookies.AllKeys.Contains(cookieName))
-        {
-            var cookie = Request.Cookies[cookieName];
-            cookie.Expires = DateTime.Now.AddDays(-1);
-            Response.Cookies.Add(cookie);
-        }
-    }
+     private void ExpireCookie(string cookieName)
+     {
+          if (Request.Cookies.AllKeys.Contains(cookieName))
+          {
+               var cookie = Request.Cookies[cookieName];
+               cookie.Expires = DateTime.Now.AddDays(-1);
+               Response.Cookies.Add(cookie);
+          }
+     }
 }

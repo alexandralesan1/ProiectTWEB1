@@ -103,62 +103,66 @@
 
 
 <div class="contact-form">
-<form action="@Url.Action("AddProduct", "Admin")" method="post" enctype="multipart/form-data" >
-    <div class="form-section">
-    <label>Nume Produs:</label>
-    <input type="text" name="Name" required />
-     </div>
+     <form action="@Url.Action("AddProduct", "Admin")" method="post" enctype="multipart/form-data">
+          <div class="form-section">
+               <label>Nume Produs:</label>
+               <input type="text" name="Name" required />
+          </div>
 
-     <div class="form-section">
-    <label>Preț:</label>
-    <input type="number" name="Price" required />
-     </div>
+          <div class="form-section">
+               <label>Preț:</label>
+               <input type="number" name="Price" required />
+          </div>
+          <div class="form-section">
+               <label>Descrire:</label>
+               <input type="text" name="Description" required />
+          </div>
 
-     <div class="form-section">
-    <label>Imagine:</label>
-    <input type="file" name="ImageFile" required />
-     </div>
+          <div class="form-section">
+               <label>Imagine:</label>
+               <input type="file" name="ImageFile" required />
+          </div>
 
-     <div class="form-section">
-    <select name="Category" required>
-        @foreach (var category in ViewBag.Categories)
-        {
-            <option value="@category">@category</option>
-        }
-    </select>
-     </div>
+          <div class="form-section">
+               <select name="Category" required>
+                    @foreach (var category in ViewBag.Categories)
+                    {
+                         <option value="@category">@category</option>
+                    }
+               </select>
+          </div>
 
-     <div class="form-section">
-    <select name="Brand" required>
-        @foreach (var brand in ViewBag.Brand)
-        {
-            <option value="@brand">@brand</option>
-        }
-    </select>
-     </div>
+          <div class="form-section">
+               <select name="Brand" required>
+                    @foreach (var brand in ViewBag.Brand)
+                    {
+                         <option value="@brand">@brand</option>
+                    }
+               </select>
+          </div>
 
-     <div class="form-section">
-    <select name="Country" required>
-        @foreach (var country in ViewBag.Country)
-        {
-            <option value="@country">@country</option>
-        }
-    </select>
-     </div>
-     
-     <div class="form-section">
-    <select name="SpecialCategory" required>
-        @foreach (var specialCategory in ViewBag.SpecialCategory)
-        {
-            <option value="@specialCategory">@specialCategory</option>
-        }
-    </select>
-     </div>
+          <div class="form-section">
+               <select name="Country" required>
+                    @foreach (var country in ViewBag.Country)
+                    {
+                         <option value="@country">@country</option>
+                    }
+               </select>
+          </div>
 
-   
-    <button class="button1" type="submit">Adaugă Produs</button>
+          <div class="form-section">
+               <select name="SpecialCategory" required>
+                    @foreach (var specialCategory in ViewBag.SpecialCategory)
+                    {
+                         <option value="@specialCategory">@specialCategory</option>
+                    }
+               </select>
+          </div>
 
-</form>
+
+          <button class="button1" type="submit">Adaugă Produs</button>
+
+     </form>
 </div>
 
 

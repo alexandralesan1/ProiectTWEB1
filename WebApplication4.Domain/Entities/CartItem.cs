@@ -14,10 +14,12 @@ namespace WebApplication4.Domain.Entities
           [Key]
           [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
           public int Id { get; set; }
-
           [Required]
           public int UserId { get; set; }
           [Required]
+          public int ProductId { get; set; }
+
+          [ForeignKey("ProductId")]
           public DBProductTable Product { get; set; }
 
           [Required]
