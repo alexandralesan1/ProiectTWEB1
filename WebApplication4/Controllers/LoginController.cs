@@ -33,7 +33,12 @@ namespace WebApplication4.Web.Controllers
 
                if (authenticatedUser != null)
                {
-
+                    
+                    if (authenticatedUser.IsBlocked)
+                    {
+                         ViewBag.LoginError = "Contul tău este blocat. Contactează suportul pentru detalii.";
+                         return View();
+                    }
                     HttpCookie authCookie = new HttpCookie("X-KEY")
                     {
                          Value = CookieGenerator.Create(authenticatedUser.Email),
@@ -42,7 +47,7 @@ namespace WebApplication4.Web.Controllers
                     };
                     Response.Cookies.Add(authCookie);
 
-                    
+                   
                     _sessionService.StoreSession(authenticatedUser.Email, authCookie.Value);
                     HttpContext.Session["UserSession"] = authenticatedUser;
                     HttpContext.Session["UserRole"] = authenticatedUser.Role;
@@ -50,7 +55,7 @@ namespace WebApplication4.Web.Controllers
                     return RedirectToAction("Home", "Home");
                }
 
-               ViewBag.LoginError = "Invalid email or password.";
+               ViewBag.LoginError = "Email sau parolă invalidă.";
                return View();
           }
 

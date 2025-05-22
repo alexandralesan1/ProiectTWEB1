@@ -1,0 +1,107 @@
+﻿
+@{
+     Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using WebApplication4.Domain.Entities
+@model DBUserTable
+
+<div class="edit-profile-container">
+     <h2>Editează Profilul Administratorului</h2>
+
+     <form action="@Url.Action("UpdateAdminProfile", "Admin")" method="post" class="edit-profile-form">
+          <input type="hidden" name="Id" value="@Model.Id" />
+
+          <label>Nume:</label>
+          <input type="text" name="Name" value="@Model.Name" required />
+
+          <label>Email:</label>
+          <input type="email" name="Email" value="@Model.Email" required />
+
+          <div class="edit-profile-actions">
+               <button type="submit" class="btn-save">Salvează Modificările</button>
+               <a href="@Url.Action("AdminProfile", "Admin")" class="btn-cancel">Anulează</a>
+          </div>
+     </form>
+</div>
+
+<style>
+     body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 20px;
+}
+
+.edit-profile-container {
+    width: 60%;
+    margin: auto;
+    padding: 25px;
+    background: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+}
+
+.edit-profile-container h2 {
+    color: #d42e6d;
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.edit-profile-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.edit-profile-form label {
+    font-weight: bold;
+    color: #333;
+}
+
+.edit-profile-form input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.edit-profile-actions {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.btn-save {
+    background-color: #28a745;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.btn-save:hover {
+    background-color: #218838;
+}
+
+.btn-cancel {
+    background-color: #dc3545;
+    color: white;
+    padding: 12px 24px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s ease;
+    border: none;
+}
+
+.btn-cancel:hover {
+    background-color: #c82333;
+}
+</style>

@@ -135,6 +135,17 @@ namespace WebApplication4.BusinessLogic.Core
                return _context.Products.FirstOrDefault(u => u.Id == id);
           }
 
+          public void UpdateAdminProfile(DBUserTable updatedAdmin)
+          {
+               var admin = _context.Users.FirstOrDefault(u => u.Id == updatedAdmin.Id);
+               if (admin != null)
+               {
+                    admin.Name = updatedAdmin.Name;
+                    admin.Email = updatedAdmin.Email;
+                    _context.SaveChanges();
+               }
+          }
+
           //public void AddNews(string title, string content, HttpPostedFileBase imageFile)
           //{
           //     string imagePath = null;

@@ -108,6 +108,30 @@ namespace WebApplication4.Controllers
                _adminService.UpdateProduct(product, ImageFile);
                return RedirectToAction("Products");
           }
+
+
+          public ActionResult EditAdminProfil()
+          {
+               var userSession = System.Web.HttpContext.Current.Session["UserSession"];
+               var userRole = System.Web.HttpContext.Current.Session["UserRole"];
+
+               if (userSession == null || userRole == null || (UserRole)userRole != UserRole.Admin)
+               {
+                    return RedirectToAction("Home", "Home");
+               }
+
+               var admin = (DBUserTable)userSession;
+               return View(admin);
+          }
+
+          [HttpPost]
+          public ActionResult UpdateAdminProfile(DBUserTable updatedAdmin)
+          {
+               _adminService.UpdateAdminProfile(updatedAdmin);
+               HttpContext.Session["UserSession"] = updatedAdmin;
+               return RedirectToAction("AdminProfile");
+          }
+
           //[HttpPost]
           //public ActionResult AddNews(string title, string content, HttpPostedFileBase imageFile)
           //{

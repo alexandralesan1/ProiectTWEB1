@@ -320,6 +320,8 @@
     <Content Include="Views\Admin\Products.cshtml" />
     <Content Include="Views\Admin\AdminProfile.cshtml" />
     <Content Include="Views\Admin\EditProduct.cshtml" />
+    <Content Include="Views\Profil\EditProfile.cshtml" />
+    <Content Include="Views\Admin\EditAdminProfil.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

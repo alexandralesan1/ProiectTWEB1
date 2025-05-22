@@ -226,6 +226,7 @@
     <Compile Include="Core\CookieGenerator.cs" />
     <Compile Include="Core\FavoriteServices.cs" />
     <Compile Include="Core\ProductService.cs" />
+    <Compile Include="Core\ProfileServices.cs" />
     <Compile Include="Core\SessionService.cs" />
     <Compile Include="Core\UserService.cs" />
     <Compile Include="DBModel\Seed\ShopDBContext.cs" />

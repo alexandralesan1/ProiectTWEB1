@@ -32,7 +32,7 @@ namespace WebApplication4.BusinessLogic.Core
                return _dbContext.Users.Any(u => u.Email == email || u.Name == username);
           }
           public DBUserTable Authenticate(string email, string password)
-          {   
+          { 
                var hashPassword = HashHelper.GenerateHash(password);
                return _dbContext.Users.FirstOrDefault(u => u.Email == email && u.Password == hashPassword);
           }
