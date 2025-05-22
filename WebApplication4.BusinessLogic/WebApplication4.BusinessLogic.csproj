@@ -221,6 +221,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\AdminServices.cs" />
     <Compile Include="Core\CartServices.cs" />
     <Compile Include="Core\CookieGenerator.cs" />
     <Compile Include="Core\FavoriteServices.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Core\SessionService.cs" />
     <Compile Include="Core\UserService.cs" />
     <Compile Include="DBModel\Seed\ShopDBContext.cs" />
+    <Compile Include="Interfaces\IAdminServices.cs" />
     <Compile Include="Interfaces\ICartServices.cs" />
     <Compile Include="Interfaces\IProductService.cs" />
     <Compile Include="Interfaces\ISessionService.cs" />

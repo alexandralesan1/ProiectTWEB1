@@ -1,0 +1,59 @@
+﻿
+@{
+     Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@using WebApplication4.Domain.Entities
+@model DBUserTable
+
+<style>
+     .profile-container {
+          width: 80%;
+          margin: 50px auto;
+          padding: 20px;
+          background: white;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+          text-align: center;
+     }
+
+          .profile-container h2 {
+               color: #d42e6d;
+               margin-bottom: 15px;
+          }
+
+     .profile-details {
+          font-size: 18px;
+          color: #333;
+     }
+
+     .admin-actions {
+          margin-top: 20px;
+     }
+
+     .btn {
+          display: inline-block;
+          padding: 10px 20px;
+          color: white;
+          background: #d42e6d;
+          text-decoration: none;
+          border-radius: 5px;
+          transition: 0.3s ease;
+     }
+
+          .btn:hover {
+               background: white;
+               color: #d42e6d;
+               border: 2px solid #d42e6d;
+          }
+</style>
+
+<h2>Profilul Administratorului</h2>
+
+<div class="profile-details">
+     <p><strong>Nume:</strong> @Model.Name</p>
+     <p><strong>Email:</strong> @Model.Email</p>
+</div>
+
+<div class="admin-actions">
+     <a href="@Url.Action("Logout", "Login")" class="btn">Deconectează-te</a>
+</div>

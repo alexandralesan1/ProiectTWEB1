@@ -13,8 +13,6 @@ namespace WebApplication4.BusinessLogic.Interfaces
           void AddUser(DBUserTable user);
           DBUserTable Authenticate(string email, string password);
           DBUserTable GetUserById(int id);
-          void BlockUser(int id);
-          void DeleteUser(int id);
           DBUserTable GetUserByEmail(string email);
      }
 }

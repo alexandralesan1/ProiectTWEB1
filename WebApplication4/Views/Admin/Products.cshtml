@@ -1,0 +1,176 @@
+﻿
+@{
+     Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Administrare Produse</h2>
+
+<form action="@Url.Action("AddProduct", "Admin")" method="post" enctype="multipart/form-data">
+     <input type="text" name="Name" placeholder="Nume Produs" required />
+     <input type="number" name="Price" placeholder="Preț" required />
+     <textarea name="Description" placeholder="Descriere" rows="5"></textarea>
+     <input type="file" name="ImageFile" required />
+
+     <select name="Category" required>
+          @foreach (var category in ViewBag.Categories)
+          {
+               <option value="@category">@category</option>
+          }
+     </select>
+
+     <select name="Brand" required>
+          @foreach (var brand in ViewBag.Brand)
+          {
+               <option value="@brand">@brand</option>
+          }
+     </select>
+
+     <select name="Country" required>
+          @foreach (var country in ViewBag.Country)
+          {
+               <option value="@country">@country</option>
+          }
+     </select>
+
+     <select name="SpecialCategory" required>
+          @foreach (var specialCategory in ViewBag.SpecialCategory)
+          {
+               <option value="@specialCategory">@specialCategory</option>
+          }
+     </select>
+
+     <button type="submit" class="btn-add">Adaugă Produs</button>
+</form>
+
+<h3>Lista Produse</h3>
+<div class="table-container">
+     <table>
+          <tr>
+               <th>Imagine</th>
+               <th>Nume</th>
+               <th>Preț</th>
+               <th>Categorie</th>
+               <th>Brand</th>
+               <th>Țară</th>
+               <th>Special</th>
+               <th>Acțiuni</th>
+          </tr>
+          @foreach (var product in Model)
+          {
+               <tr>
+                    <td><img src="@product.ImageUrl" width="80" /></td>
+                    <td>
+                         <a href="@Url.Action("EditProduct", "Admin", new { id = product.Id })">
+                              @product.Name
+                         </a>
+                    </td>
+                    <td>@product.Price MDL</td>
+                    <td>@product.Category</td>
+                    <td>@product.Brand</td>
+                    <td>@product.Country</td>
+                    <td>@product.SpecialCategory</td>
+                    <td>
+                         <form onsubmit="return confirm('Ești sigur că vrei să ștergi acest produs?');"
+                               action="@Url.Action("DeleteProduct", "Admin")" method="post">
+                              <input type="hidden" name="id" value="@product.Id" />
+                              <button type="submit" class="btn-delete">Șterge</button>
+                         </form>
+                    </td>
+               </tr>
+          }
+     </table>
+</div>
+
+<style>
+     body {
+          font-family: 'Montserrat', sans-serif;
+          background-color: #f9f9f9;
+          margin: 0;
+          padding: 20px;
+     }
+
+     h2 {
+          text-align: center;
+          color: #d42e6d;
+          font-size: 22px;
+          margin-bottom: 20px;
+     }
+
+     form {
+          max-width: 600px;
+          margin: auto;
+          padding: 20px;
+          background: white;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+     }
+
+     input, select {
+          padding: 8px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 14px;
+     }
+
+     button {
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s ease;
+          font-size: 16px;
+          width: 100%;
+     }
+
+          button:hover {
+               opacity: 0.8;
+          }
+
+     .table-container {
+          margin: 20px auto;
+          width: 90%;
+     }
+
+     table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+     }
+
+          table th, table td {
+               padding: 12px;
+               text-align: center;
+               border-bottom: 1px solid #ddd;
+               font-size: 14px;
+               text-decoration:none;
+          }
+
+          table th {
+               background: #d42e6d;
+               color: white;
+               text-transform: uppercase;
+          }
+
+          table tr:hover {
+               background: #f2f2f2;
+          }
+
+     textarea {
+          width: 100%;
+          padding: 10px;
+          border: 1px solid #ccc;
+          border-radius: 5px;
+          font-size: 14px;
+          resize: vertical;
+     }
+
+     a {
+      text-decoration:none;
+      color:black;
+     }
+</style>

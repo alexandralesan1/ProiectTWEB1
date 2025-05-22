@@ -1,0 +1,148 @@
+﻿
+@{
+     Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+@using WebApplication4.Domain.Entities
+@model DBProductTable
+
+<div class="edit-product-container">
+     <h2>Modifică Produsul</h2>
+
+     <form action="@Url.Action("UpdateProduct", "Admin")" method="post" enctype="multipart/form-data" class="edit-product-form">
+          <input type="hidden" name="Id" value="@Model.Id" />
+
+          <label>Nume:</label>
+          <input type="text" name="Name" value="@Model.Name" required />
+
+          <label>Preț:</label>
+          <input type="number" name="Price" value="@Model.Price" required />
+
+          <label>Descriere:</label>
+          <textarea name="Description" rows="5">@Model.Description</textarea>
+
+          <label>Imagine:</label>
+          <input type="file" name="ImageFile" />
+          <img src="@Model.ImageUrl" width="150" />
+
+          <label>Categorie:</label>
+          <select name="Category" required>
+               @foreach (var category in ViewBag.Categories)
+               {
+                    <option value="@category" @(Model.Category == category ? "selected" : "")>@category</option>
+               }
+          </select>
+
+          <label>Brand:</label>
+          <select name="Brand" required>
+               @foreach (var brand in ViewBag.Brand)
+               {
+                    <option value="@brand" @(Model.Brand == brand ? "selected" : "")>@brand</option>
+               }
+          </select>
+
+          <label>Țară:</label>
+          <select name="Country" required>
+               @foreach (var country in ViewBag.Country)
+               {
+                    <option value="@country" @(Model.Country == country ? "selected" : "")>@country</option>
+               }
+          </select>
+
+          <label>Special:</label>
+          <select name="SpecialCategory" required>
+               @foreach (var specialCategory in ViewBag.SpecialCategory)
+               {
+                    <option value="@specialCategory" @(Model.SpecialCategory == specialCategory ? "selected" : "")>@specialCategory</option>
+               }
+          </select>
+
+          <div class="edit-product-actions">
+               <button type="submit" class="btn-save">Salvează Modificările</button>
+               <a href="@Url.Action("Products", "Admin")" class="btn-cancel">Anulează</a>
+          </div>
+     </form>
+</div>
+
+<style>
+     body {
+          font-family: 'Montserrat', sans-serif;
+          background-color: #f9f9f9;
+          margin: 0;
+          padding: 20px;
+     }
+
+     h2 {
+          text-align: center;
+          color: #d42e6d;
+          font-size: 24px;
+          margin-bottom: 20px;
+     }
+
+     .edit-product-container {
+          width: 80%;
+          margin: auto;
+          padding: 20px;
+          background: white;
+          box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+     }
+
+     .edit-product-form {
+          display: flex;
+          flex-direction: column;
+          gap: 15px;
+     }
+
+          .edit-product-form label {
+               font-weight: bold;
+               color: #333;
+          }
+
+          .edit-product-form input,
+          .edit-product-form select,
+          .edit-product-form textarea {
+               width: 100%;
+               padding: 10px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+               font-size: 14px;
+          }
+
+          .edit-product-form textarea {
+               resize: vertical;
+          }
+
+     .edit-product-actions {
+          display: flex;
+          gap: 15px;
+          justify-content: center;
+          margin-top: 20px;
+     }
+
+     button {
+          padding: 10px 15px;
+          font-size: 16px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s ease;
+     }
+
+     .btn-save {
+          background-color: #28a745;
+          color: white;
+     }
+
+          .btn-save:hover {
+               background-color: #218838;
+          }
+
+     .btn-cancel {
+          background-color: #dc3545;
+          color: white;
+     }
+
+          .btn-cancel:hover {
+               background-color: #c82333;
+          }
+</style>

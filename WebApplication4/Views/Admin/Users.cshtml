@@ -1,0 +1,139 @@
+﻿
+@{
+
+     Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+}
+
+<h2>Administrare Utilizatori</h2>
+
+<div class="table-container">
+     <table>
+          <tr>
+               <th>Nume</th>
+               <th>Email</th>
+               <th>Telefon</th>
+               <th>Rol</th>
+               <th>Acțiune</th>
+          </tr>
+          @foreach (var user in Model)
+          {
+               <tr class="@((user.IsBlocked ? "blocked-user" : ""))">
+                    <td>@user.Name</td>
+                    <td>@user.Email</td>
+                    <td>@user.Phone</td> 
+                    <td>@user.Role</td>
+                    <td>
+                         <div class="user-actions">
+                              @if (user.IsBlocked)
+                              {
+                                   <form action="@Url.Action("UnblockUser", "Admin")" method="post">
+                                        <input type="hidden" name="userId" value="@user.Id" />
+                                        <button type="submit" class="btn-unblock">Deblochează</button>
+                                   </form>
+                              }
+                              else
+                              {
+                                   <form action="@Url.Action("BlockUser", "Admin")" method="post">
+                                        <input type="hidden" name="userId" value="@user.Id" />
+                                        <button type="submit" class="btn-block">Blochează</button>
+                                   </form>
+                              }
+
+                              <form onsubmit="return confirm('Ești sigur că vrei să ștergi acest utilizator?');"
+                                    action="@Url.Action("DeleteUser", "Admin")" method="post">
+                                   <input type="hidden" name="userId" value="@user.Id" />
+                                   <button type="submit" class="btn-delete">Șterge</button>
+                              </form>
+                         </div>
+                    </td>
+               </tr>
+          }
+     </table>
+</div>
+
+
+<style>
+     body {
+          font-family: 'Montserrat', sans-serif;
+          background-color: #f9f9f9;
+          margin: 0;
+          padding: 20px;
+     }
+
+     h2 {
+          text-align: center;
+          color: #d42e6d;
+          font-size: 22px;
+          margin-bottom: 20px;
+     }
+
+     .table-container {
+          margin: 20px auto;
+          width: 90%;
+     }
+
+     table {
+          width: 100%;
+          border-collapse: collapse;
+          background: white;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+     }
+
+          table th, table td {
+               padding: 12px;
+               text-align: center;
+               border-bottom: 1px solid #ddd;
+               font-size: 14px;
+          }
+
+          table th {
+               background: #d42e6d;
+               color: white;
+               text-transform: uppercase;
+          }
+
+          table tr:hover {
+               background: #f2f2f2;
+          }
+
+     .blocked-user {
+          background: rgba(255, 0, 0, 0.2);
+     }
+     .user-actions {
+          display: flex;
+          flex-direction: row; 
+          gap: 10px;
+          justify-content: center; 
+     }
+
+     td {
+          text-align: center; 
+     }
+
+     button {
+          padding: 10px;
+          border: none;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s ease;
+          font-size: 16px;
+          width: 100%;
+     }
+          button:hover {
+               opacity: 0.8;
+          }
+
+     form {
+          max-width: 120px;
+          margin: auto;
+          padding: 10px;
+          background: white;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+          border-radius: 8px;
+          display: flex;
+          flex-direction: column;
+          gap: 5px;
+     }
+</style>

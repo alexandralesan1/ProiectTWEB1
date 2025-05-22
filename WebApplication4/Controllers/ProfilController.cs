@@ -17,7 +17,7 @@ namespace WebApplication4.Web.Controllers
                var userSession = System.Web.HttpContext.Current.Session["UserSession"];
                var userRole = System.Web.HttpContext.Current.Session["UserRole"];
 
-               if (userSession == null && userRole == null && (UserRole)userRole != UserRole.Buyer)
+               if (userSession == null || userRole == null || (UserRole)userRole != UserRole.Buyer)
                {
                     return RedirectToAction("Home", "Home"); 
                }

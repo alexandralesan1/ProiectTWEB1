@@ -42,27 +42,6 @@ namespace WebApplication4.BusinessLogic.Core
             return _dbContext.Users.FirstOrDefault(u => u.Id == id);
         }
 
-          public void BlockUser(int id)
-        {
-            var user = GetUserById(id);
-            if (user != null)
-            {
-                user.IsBlocked = true; 
-                _dbContext.SaveChanges();
-            }
-        }
-
-        
-        public void DeleteUser(int id)
-        {
-            var user = GetUserById(id);
-            if (user != null)
-            {
-                _dbContext.Users.Remove(user);
-                _dbContext.SaveChanges();
-            }
-        }
-
         public DBUserTable GetUserByEmail(string email)
         {
 

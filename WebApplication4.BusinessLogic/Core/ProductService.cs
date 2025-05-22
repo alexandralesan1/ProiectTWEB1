@@ -28,22 +28,6 @@ namespace WebApplication4.BusinessLogic.Core
             return _context.Products.Find(id);
         }
 
-        public void AddProduct(DBProductTable product)
-        {
-            _context.Products.Add(product);
-            _context.SaveChanges();
-        }
-
-        public void DeleteProduct(int id)
-        {
-            var product = _context.Products.Find(id);
-            if (product != null)
-            {
-                _context.Products.Remove(product);
-                _context.SaveChanges();
-            }
-        }
-
         public void AddFavoriteItem(DBFavoriteItemsTable favoriteItem)
         {
             _context.FavoriteItems.Add(favoriteItem);
