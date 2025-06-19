@@ -132,11 +132,26 @@ namespace WebApplication4.Controllers
                return RedirectToAction("AdminProfile");
           }
 
-          //[HttpPost]
-          //public ActionResult AddNews(string title, string content, HttpPostedFileBase imageFile)
-          //{
-          //     _adminService.AddNews(title, content, imageFile);
-          //     return RedirectToAction("Dashboard");
-          //}
+
+          public ActionResult News()
+          {
+               var newsList = _adminService.GetAllNews();
+               return View(newsList);
+          }
+
+          [HttpPost]
+          public ActionResult AddNews(string Title, string Content, HttpPostedFileBase ImageFile)
+          {
+               _adminService.AddNews(Title, Content, ImageFile);
+               return RedirectToAction("News");
+          }
+
+          [HttpPost]
+          public ActionResult DeleteNews(int id)
+          {
+               _adminService.DeleteNews(id);
+               return RedirectToAction("News");
+          }
+
      }
 }

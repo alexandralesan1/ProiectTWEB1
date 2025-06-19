@@ -9,6 +9,7 @@ using WebApplication4.BusinessLogic.DBModel.Seed;
 using WebApplication4.Domain.Entities;
 using WebApplication4.Domain.Enums;
 using WebApplication4.BusinessLogic.Interfaces;
+using System.IO;
 
 
 namespace WebApplication4.BusinessLogic.Core
@@ -146,24 +147,54 @@ namespace WebApplication4.BusinessLogic.Core
                }
           }
 
-          //public void AddNews(string title, string content, HttpPostedFileBase imageFile)
-          //{
-          //     string imagePath = null;
-          //     if (imageFile != null && imageFile.ContentLength > 0)
-          //     {
-          //          string fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(imageFile.FileName);
-          //          string path = System.Web.HttpContext.Current.Server.MapPath("~/Content/news/") + fileName;
-          //          imageFile.SaveAs(path);
-          //          imagePath = "/Content/news/" + fileName;
-          //     }
 
-          //     _context.News.Add(new DBNewsTable { Title = title, Content = content, ImageUrl = imagePath });
-          //     _context.SaveChanges();
-          //}
+          public void AddNews(string title, string content, HttpPostedFileBase imageFile)
+          {
+               string imageUrl = null;
 
-          //public List<DBNewsTable> GetNews()
-          //{
-          //     return _context.News.ToList();
-          //}
+               if (imageFile != null && imageFile.ContentLength > 0)
+               {
+                    string fileName = Guid.NewGuid() + Path.GetExtension(imageFile.FileName);
+                    string folderPath = HttpContext.Current.Server.MapPath("~/Content/news/");
+                    Directory.CreateDirectory(folderPath);
+                    string fullPath = Path.Combine(folderPath, fileName);
+                    imageFile.SaveAs(fullPath);
+
+                    imageUrl = "/Content/news/" + fileName;
+               }
+
+               var news = new DBNewsTable
+               {
+                    Title = title,
+                    Content = content,
+                    CreatedAt = DateTime.Now,
+                    ImageUrl = imageUrl
+               };
+
+               _context.News.Add(news);
+               _context.SaveChanges();
+          }
+
+          public List<DBNewsTable> GetAllNews()
+          {
+               return _context.News.OrderByDescending(n => n.CreatedAt).ToList();
+          }
+
+          public void DeleteNews(int id)
+          {
+               var news = _context.News.FirstOrDefault(n => n.Id == id);
+               if (news != null)
+               {
+                    if (!string.IsNullOrEmpty(news.ImageUrl))
+                    {
+                         string path = System.Web.HttpContext.Current.Server.MapPath(news.ImageUrl);
+                         if (System.IO.File.Exists(path))
+                              System.IO.File.Delete(path);
+                    }
+
+                    _context.News.Remove(news);
+                    _context.SaveChanges();
+               }
+          }
      }
 }

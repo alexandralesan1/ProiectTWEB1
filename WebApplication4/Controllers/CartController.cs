@@ -19,8 +19,9 @@ public class CartController : Controller
 
      public ActionResult Cart()
      {
-          var userId = _sessionService.GetLoggedInUserId(); 
-          if (userId == null)
+          var userId = _sessionService.GetLoggedInUserId();
+          var userSession = System.Web.HttpContext.Current.Session["UserSession"];
+          if (userSession == null)
           {
                return RedirectToAction("Login", "Login"); 
           }

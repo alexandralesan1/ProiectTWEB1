@@ -1,0 +1,99 @@
+﻿
+
+@{
+
+     Layout = "~/Views/Shared/AdminLayout.cshtml";
+
+}
+<h2>Administrare Noutăți</h2>
+
+<form action="@Url.Action("AddNews", "Admin")" method="post" enctype="multipart/form-data" class="news-form">
+     <input type="text" name="Title" placeholder="Titlu noutate" required />
+     <textarea name="Content" placeholder="Conținut noutate..." rows="4" required></textarea>
+     <input type="file" name="ImageFile" accept="image/*" />
+     <button type="submit" class="btn-add">Adaugă Noutate</button>
+</form>
+
+<h3>Lista Noutăți</h3>
+<table>
+     <tr><th>Titlu</th><th>Imagine</th><th>Data</th><th>Acțiune</th></tr>
+     @foreach (var item in Model)
+     {
+          <tr>
+               <td>@item.Title</td>
+               <td>
+                    @if (!string.IsNullOrEmpty(item.ImageUrl))
+                    {
+                         <img src="@item.ImageUrl" width="80" />
+                    }
+               </td>
+               <td>@item.CreatedAt.ToString("dd MMM yyyy HH:mm")</td>
+               <td>
+                    <form action="@Url.Action("DeleteNews", "Admin")" method="post" onsubmit="return confirm('Ștergi această noutate?');">
+                         <input type="hidden" name="id" value="@item.Id" />
+                         <button type="submit" class="btn-delete">Șterge</button>
+                    </form>
+               </td>
+          </tr>
+     }
+</table>
+
+<style>
+     .news-form {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+          background: white;
+          padding: 20px;
+          width: 80%;
+          margin: 20px auto;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+          border-radius: 8px;
+     }
+
+          .news-form input, .news-form textarea {
+               padding: 10px;
+               font-size: 15px;
+               border: 1px solid #ccc;
+               border-radius: 5px;
+          }
+
+     .btn-add, .btn-delete {
+          background-color: #d42e6d;
+          color: white;
+          border: none;
+          padding: 10px 15px;
+          font-size: 15px;
+          border-radius: 5px;
+          cursor: pointer;
+          transition: 0.3s ease;
+     }
+
+          .btn-add:hover, .btn-delete:hover {
+               background: white;
+               color: #d42e6d;
+               border: 2px solid #d42e6d;
+          }
+
+     .news-actions {
+          display: flex;
+          gap: 10px;
+          justify-content: center;
+     }
+
+     .table-container table {
+          width: 80%;
+          margin: auto;
+          border-collapse: collapse;
+          background: white;
+          box-shadow: 0px 4px 8px rgba(0,0,0,0.1);
+          border-radius: 8px;
+     }
+
+     .table-container th, .table-container td {
+          padding: 12px;
+          text-align: center;
+          border-bottom: 1px solid #ddd;
+          font-size: 14px;
+     }
+</style>

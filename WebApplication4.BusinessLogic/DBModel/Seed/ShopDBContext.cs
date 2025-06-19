@@ -22,8 +22,9 @@ namespace WebApplication4.BusinessLogic.DBModel.Seed
 
         public DbSet <DBCartItemsTable> CartItems { get; set;}
 
+         public DbSet<DBNewsTable> News { get; set; }
 
-        public ShopDBContext() : base("name=ShopDatabase") { }
+          public ShopDBContext() : base("name=ShopDatabase") { }
         
 
     }

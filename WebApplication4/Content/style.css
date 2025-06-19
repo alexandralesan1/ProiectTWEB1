@@ -211,21 +211,6 @@ body, ul {
      letter-spacing: 2px;
 }
 
-.news-item img {
-     width: 60%;
-     height: 50%;
-     border: 2px solid black;
-     padding: 10px;
-     margin-top: 20px;
-     border-radius: 10px;
-     background-color: white;
-}
-
-.news-item p {
-     margin-left: 20px;
-     margin-right: 20px;
-     margin-bottom: 30px;
-}
 
 .promo-item:hover img, .newP-item:hover img {
      transform: scale(0.9);

@@ -1,0 +1,88 @@
+﻿
+@{
+     ViewBag.Title = "News";
+}
+@using WebApplication4.Domain.Entities
+@model Tuple<DBNewsTable, List<DBNewsTable>>
+
+<div class="news-page">
+     <div class="main-news">
+          <h2>@Model.Item1.Title</h2>
+          <img src="@Model.Item1.ImageUrl" alt="Imagine noutate" class="news-image" />
+          <p class="news-date">@Model.Item1.CreatedAt.ToString("dd MMM yyyy HH:mm")</p>
+          <p class="news-content">@Model.Item1.Content</p>
+     </div>
+
+     <div class="news-sidebar">
+          <h3>Alte noutăți</h3>
+          <ul>
+               @foreach (var item in Model.Item2)
+               {
+                    <li>
+                         <a href="@Url.Action("Details", "News", new { id = item.Id })">@item.Title</a>
+                    </li>
+               }
+          </ul>
+     </div>
+</div>
+
+<style>
+     .news-page {
+          display: flex;
+          gap: 40px;
+          padding: 30px 10%;
+          background-color: #f9f9f9;
+          font-family: 'Montserrat', sans-serif;
+     }
+
+     .main-news {
+          flex: 2;
+          background: white;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+     }
+
+          .main-news h2 {
+               color: #d42e6d;
+               margin-bottom: 10px;
+          }
+
+     .news-image {
+          max-width: 100%;
+          margin: 15px 0;
+          border-radius: 6px;
+     }
+
+     .news-sidebar {
+          flex: 1;
+          background: white;
+          padding: 20px;
+          border-radius: 8px;
+          box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+     }
+
+          .news-sidebar h3 {
+               margin-bottom: 15px;
+               color: #d42e6d;
+          }
+
+          .news-sidebar ul {
+               list-style-type: none;
+               padding-left: 0;
+          }
+
+          .news-sidebar li {
+               margin-bottom: 10px;
+          }
+
+          .news-sidebar a {
+               color: #333;
+               text-decoration: none;
+          }
+
+               .news-sidebar a:hover {
+                    color: #d42e6d;
+                    text-decoration: underline;
+               }
+</style>

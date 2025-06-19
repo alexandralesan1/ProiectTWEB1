@@ -182,9 +182,11 @@
         @foreach (var product in Model)
         {
             <div class="produse">
-                <img src="@product.ImageUrl" alt="@product.Name" />
-                <h4>@product.Name</h4>
-                <p>@product.Price</p>
+                 <a href="@Url.Action("Singleproduct", "Singleproduct", new { name = product.Name })">
+                      <img src="@product.ImageUrl" alt="@product.Name" />
+                 </a> 
+                     <h4>@product.Name</h4>
+                      <p>@product.Price</p>
             </div>
         }
     </div>

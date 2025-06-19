@@ -1,224 +1,323 @@
 ﻿@{
-    ViewBag.Title = "Home";
+     ViewBag.Title = "Home";
 }
-@using WebApplication4.Domain.Entities
-@model IEnumerable<DBProductTable>
+@using WebApplication4.Models
+@model HomePageViewModel
 
 <!-- Slideshow -->
 <div class="slideshow">
-    <div class="slide active">
-        <img src="~/Content/images/banner4.png" alt="Slide 1">
-    </div>
-    <div class="slide">
-        <img src="~/Content/images/banner2.png" alt="Slide 2">
-    </div>
-    <div class="slide">
-        <img src="~/Content/images/banner 3.png" alt="Slide 3">
-    </div>
+     <div class="slide active">
+          <img src="~/Content/images/banner4.png" alt="Slide 1">
+     </div>
+     <div class="slide">
+          <img src="~/Content/images/banner2.png" alt="Slide 2">
+     </div>
+     <div class="slide">
+          <img src="~/Content/images/banner 3.png" alt="Slide 3">
+     </div>
 
-    <div class="dots">
-        <span class="dot active" data-slide="0"></span>
-        <span class="dot" data-slide="1"></span>
-        <span class="dot" data-slide="2"></span>
-    </div>
+     <div class="dots">
+          <span class="dot active" data-slide="0"></span>
+          <span class="dot" data-slide="1"></span>
+          <span class="dot" data-slide="2"></span>
+     </div>
 </div>
 
 <style>
-    .slideshow {
-        position: relative;
-        width: 100%;
-        height: 80vh;
-        overflow: hidden;
-        background-color: #000;
-    }
+     .slideshow {
+          position: relative;
+          width: 100%;
+          height: 80vh;
+          overflow: hidden;
+          background-color: #000;
+     }
 
-    .slide {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        opacity: 0;
-        transition: opacity 1s ease-in-out;
-    }
+     .slide {
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          opacity: 0;
+          transition: opacity 1s ease-in-out;
+     }
 
-        .slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+          .slide img {
+               width: 100%;
+               height: 100%;
+               object-fit: cover;
+          }
 
-        .slide.active {
-            opacity: 1;
-            z-index: 1;
-        }
+          .slide.active {
+               opacity: 1;
+               z-index: 1;
+          }
 
-    .dots {
-        position: absolute;
-        bottom: 15px;
-        width: 100%;
-        text-align: center;
-        z-index: 2;
-    }
+     .dots {
+          position: absolute;
+          bottom: 15px;
+          width: 100%;
+          text-align: center;
+          z-index: 2;
+     }
 
-    .dot {
-        display: inline-block;
-        width: 12px;
-        height: 12px;
-        margin: 0 5px;
-        background-color: rgba(255, 255, 255, 0.5);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background-color 0.3s;
-    }
+     .dot {
+          display: inline-block;
+          width: 12px;
+          height: 12px;
+          margin: 0 5px;
+          background-color: rgba(255, 255, 255, 0.5);
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background-color 0.3s;
+     }
 
-        .dot.active {
-            background-color: white;
-        }
+          .dot.active {
+               background-color: white;
+          }
 
-    .newP-container {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 20px;
-    }
 
-    .newP-item {
-        width: 200px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 10px;
-        text-align: center;
-        background-color: #fff;
-    }
+     .promo-container,
+     .news-container {
+          display: flex;
+          gap: 20px;
+          flex-wrap: wrap;
+     }
 
-        .newP-item img {
-            width: 100%;
-            height: 150px;
-            object-fit: cover;
-        }
+     .promo-item,
+     .news-item {
+          width: 200px;
+          text-align: center;
+     }
 
-    .promo-container,
-    .news-container {
-        display: flex;
-        gap: 20px;
-        flex-wrap: wrap;
-    }
+     .promo-button-container {
+          margin-top: 20px;
+          text-align: center;
+     }
 
-    .promo-item,
-    .news-item {
-        width: 200px;
-        text-align: center;
-    }
+     .button1 {
+          padding: 10px 20px;
+          background-color: #d42e6d;
+          color: white;
+          text-decoration: none;
+          border-radius: 4px;
+     }
+     .new-products {
+          padding: 40px 5% 20px;
+          background-color: #fafafa;
+     }
 
-    .promo-button-container {
-        margin-top: 20px;
-        text-align: center;
-    }
+     .newP-container {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 30px;
+          margin-top: 20px;
+     }
 
-    .button1 {
-        padding: 10px 20px;
-        background-color: #d42e6d;
-        color: white;
-        text-decoration: none;
-        border-radius: 4px;
-    }
+     .newP-item {
+          width: 220px;
+          height: auto;
+          background: white;
+          border-radius: 8px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          padding: 15px;
+          text-align: center;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          overflow: hidden;
+     }
+
+
+          .newP-item:hover {
+               transform: translateY(-5px);
+          }
+
+          .newP-item img {
+               width: 100%;
+               max-height: 160px;
+               object-fit: cover;
+               border-radius: 6px;
+               margin-bottom: 10px;
+          }
+
+
+          .newP-item p {
+               font-weight: 600;
+               margin: 5px 0;
+               color: #333;
+          }
+
+          .newP-item h3 {
+               color: #d42e6d;
+               margin-bottom: 10px;
+               font-size: 18px;
+          }
+
+          .newP-item form {
+               margin: 5px 0;
+          }
+
+          .newP-item button {
+               background-color: #d42e6d;
+               color: white;
+               border: none;
+               padding: 6px 12px;
+               font-size: 14px;
+               border-radius: 4px;
+               cursor: pointer;
+               transition: background-color 0.3s ease;
+          }
+
+               .newP-item button:hover {
+                    background-color: #b62559;
+               }
+
+     .promo-button-container {
+          margin-top: 30px;
+          text-align: center;
+     }
+     .news-container {
+          display: flex;
+          justify-content: space-between;
+          align-items: stretch;
+          gap: 30px;
+          padding: 20px;
+          background-color: #fff;
+          border-radius: 10px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+          margin-top: 20px;
+     }
+
+     .news-item {
+          display: flex;
+          flex-direction: row;
+          width: 100%;
+          gap: 30px;
+          flex-wrap: wrap;
+     }
+
+     .news-content {
+          flex: 2;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+     }
+
+          .news-content h3 {
+               color: #d42e6d;
+               font-size: 22px;
+               margin-bottom: 10px;
+               text-align: center;
+          }
+
+          .news-content p {
+               font-size: 16px;
+               color: #333;
+               text-align: justify;
+               line-height: 1.6;
+          }
+
+     .news-image {
+          flex: 1;
+          display: flex;
+          justify-content: flex-end;
+          align-items: center;
+     }
+
+          .news-image img {
+               max-width: 100%;
+               height: auto;
+               border-radius: 8px;
+               object-fit: cover;
+               box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+          }
+
+    
 </style>
 
 <script>
-    let currentSlide = 0;
-    const slides = document.querySelectorAll(".slideshow .slide");
-    const dots = document.querySelectorAll(".slideshow .dot");
-    let slideInterval = setInterval(showNextSlide, 4000);
+     let currentSlide = 0;
+     const slides = document.querySelectorAll(".slideshow .slide");
+     const dots = document.querySelectorAll(".slideshow .dot");
+     let slideInterval = setInterval(showNextSlide, 4000);
 
-    function showSlide(index) {
-        slides[currentSlide].classList.remove("active");
-        dots[currentSlide].classList.remove("active");
+     function showSlide(index) {
+          slides[currentSlide].classList.remove("active");
+          dots[currentSlide].classList.remove("active");
 
-        currentSlide = index;
+          currentSlide = index;
 
-        slides[currentSlide].classList.add("active");
-        dots[currentSlide].classList.add("active");
-    }
+          slides[currentSlide].classList.add("active");
+          dots[currentSlide].classList.add("active");
+     }
 
-    function showNextSlide() {
-        let nextIndex = (currentSlide + 1) % slides.length;
-        showSlide(nextIndex);
-    }
+     function showNextSlide() {
+          let nextIndex = (currentSlide + 1) % slides.length;
+          showSlide(nextIndex);
+     }
 
-    dots.forEach(dot => {
-        dot.addEventListener("click", function () {
-            clearInterval(slideInterval);
-            showSlide(parseInt(this.getAttribute("data-slide")));
-            slideInterval = setInterval(showNextSlide, 4000);
-        });
-    });
+     dots.forEach(dot => {
+          dot.addEventListener("click", function () {
+               clearInterval(slideInterval);
+               showSlide(parseInt(this.getAttribute("data-slide")));
+               slideInterval = setInterval(showNextSlide, 4000);
+          });
+     });
 </script>
 
 <!-- Produse Noi -->
 <div class="new-products">
-    <h2 class="title-h2">Produse Noi</h2>
-    <div class="newP-container">
-        @foreach (var product in Model)
-        {
-            <div class="newP-item">
-                <a href="@Url.Action("Singleproduct", "Singleproduct", new { name = product.Name })">
-                    <img src="@product.ImageUrl" alt="@product.Name" />
-                    <p>@product.Name</p>
-                </a>
-                <h3>@product.Price mdl</h3>
-                <form action="@Url.Action("AddToCart", "Cart")" method="post">
-                    <input type="hidden" name="id" value="@product.Id" />
-                    <button type="submit">Adaugă în coș</button>
-                </form>
+     <h2 class="title-h2">Produse Noi</h2>
+     <div class="newP-container">
+          @foreach (var product in Model.NewProducts)
+          {
+               <div class="newP-item">
+                    <a href="@Url.Action("Singleproduct", "Singleproduct", new { name = product.Name })">
+                         <img src="@product.ImageUrl" alt="@product.Name" />
+                         <p>@product.Name</p>
+                    </a>
+                    <h3>@product.Price mdl</h3>
+                    <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                         <input type="hidden" name="id" value="@product.Id" />
+                         <button type="submit">Adaugă în coș</button>
+                    </form>
 
-                <form action="@Url.Action("AddToFavorites", "Favorite")" method="post">
-                    <input type="hidden" name="id" value="@product.Id" />
-                    <button type="submit">Adaugă la favorite</button>
-                </form>
-            </div>
-        }
-    </div>
-    <div class="promo-button-container">
-        <a href="#" class="button1">Toate Produsele Noi</a>
-    </div>
-</div>
-
-<!-- Promoții -->
-<div class="promotions">
-    <h2 class="title-h2">Promoții special</h2>
-    <div class="promo-container">
-        <div class="promo-item">
-            <img src="~/Content/images/2.jpg" alt="Product 1">
-            <p>Produs1 brand cantitate</p>
-            <h3>1100 mdl</h3>
-        </div>
-        <div class="promo-item">
-            <img src="~/Content/images/2.jpg" alt="Product 2">
-            <p>Produs2 brand cantitate</p>
-            <h3>1100 mdl</h3>
-        </div>
-        <div class="promo-item">
-            <img src="~/Content/images/2.jpg" alt="Product 3">
-            <p>Produs3 brand cantitate</p>
-            <h3>1100 mdl</h3>
-        </div>
-    </div>
-    <div class="promo-button-container">
-        <a href="#" class="button1">Toate Promoțiile</a>
-    </div>
+                    <form action="@Url.Action("AddToFavorites", "Favorite")" method="post">
+                         <input type="hidden" name="id" value="@product.Id" />
+                         <button type="submit">Adaugă la favorite</button>
+                    </form>
+               </div>
+          }
+     </div>
+     <div class="promo-button-container">
+          <a href="#" class="button1">Toate Produsele Noi</a>
+     </div>
 </div>
 
 <!-- Noutăți -->
 <div class="news">
-    <h2 class="title-h2">Noutăți</h2>
-    <div class="news-container">
-        <div class="news-item">
-            <img src="~/Content/images/2.jpg" alt="News">
-            <p>
-                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s...
-            </p>
-        </div>
-    </div>
-    <div class="promo-button-container">
-        <a href="#" class="button1">Toate Noutățile</a>
-    </div>
+     <h2 class="title-h2">Noutăți</h2>
+
+     @if (Model.LatestNews != null)
+     {
+          <div class="news-container">
+               <div class="news-item">
+                    <div class="news-image">
+                         <img src="@Model.LatestNews.ImageUrl" alt="News" />
+                    </div>
+                    <div class="news-content">
+                         <h3>@Model.LatestNews.Title</h3>
+                         <p>@(Model.LatestNews.Content.Length > 300 ? Model.LatestNews.Content.Substring(0, 300) + "..." : Model.LatestNews.Content)</p>
+                    </div>
+               </div>
+          </div>
+     }
+     else
+     {
+          <p style="text-align:center; font-style:italic;">Momentan nu sunt disponibile noutăți.</p>
+     }
+
+     <div class="promo-button-container">
+          <a href="@Url.Action("News", "News")" class="button1">Toate Noutățile</a>
+     </div>
 </div>

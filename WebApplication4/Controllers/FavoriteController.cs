@@ -24,7 +24,8 @@ namespace WebApplication4.Controllers
           public ActionResult Favorite()
           {
                var userId = _sessionService.GetLoggedInUserId();
-               if (userId == null)
+               var userSession = System.Web.HttpContext.Current.Session["UserSession"];
+               if (userSession == null)
                {
                     return RedirectToAction("Login", "Login");
                }
