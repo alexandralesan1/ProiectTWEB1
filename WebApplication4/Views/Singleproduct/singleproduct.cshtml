@@ -96,8 +96,10 @@
         </p>
 
         <div class="add-to-cart">
-            <input type="number" id="quantity" value="1" min="1" />
-            <button onclick="addToCart()">Adaugă în coș</button>
+             <form action="@Url.Action("AddToCart", "Cart")" method="post">
+                  <input type="hidden" name="id" value="@Model.Id" />
+                  <button type="submit">Adaugă în coș</button>
+             </form>
         </div>
 
         <div class="product-description">
